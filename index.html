@@ -1,0 +1,2047 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Why Peace Matters for the Economy — Ridhi Kapoor | 2026 Conflict Analysis</title>
+<link rel="canonical" href="https://why-peace-matters-ridhi-kapoor.html/">
+<link href="index_files/css2.css" rel="stylesheet">
+<script src="index_files/chart.umd.min.js"></script>
+<style>
+:root {
+  --navy:#0D1B2A; --navy2:#1B2B3B; --blue:#1565C0; --blue-light:#1976D2;
+  --blue-pale:#E3F0FB; --accent:#D32F2F; --accent2:#F57C00; --gold:#F9A825;
+  --green:#2E7D32; --text:#1A2332; --text-light:#4A5568; --text-muted:#718096;
+  --border:#CBD5E0; --bg:#F7F9FC; --white:#FFFFFF; --warning-bg:#FFF5F5;
+  --info-bg:#EBF8FF; --section-bg:#F0F4F8;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;font-size:15px;}
+body{background:var(--bg);color:var(--text);font-family:'IBM Plex Sans',sans-serif;overflow-x:hidden;}
+
+/* ── LIVE NEWS TICKER (floating bottom) ── */
+.news-ticker {
+  position:fixed; bottom:0; left:0; right:0; z-index:500;
+  background:var(--navy); border-top:2px solid var(--accent);
+  display:flex; align-items:stretch; height:36px;
+  box-shadow:0 -4px 20px rgba(0,0,0,0.3);
+}
+.news-ticker-label {
+  background:var(--accent); color:white;
+  font-family:'Oswald',sans-serif; font-size:11px; letter-spacing:2px;
+  padding:0 14px; white-space:nowrap;
+  display:flex; align-items:center; gap:6px; flex-shrink:0;
+}
+.pulse-dot{width:7px;height:7px;border-radius:50%;background:white;animation:pdot 1.2s ease-in-out infinite;}
+@keyframes pdot{0%,100%{opacity:1}50%{opacity:0.3}}
+.news-ticker-track{overflow:hidden;flex:1;display:flex;align-items:center;}
+.news-ticker-inner{
+  display:inline-block; white-space:nowrap;
+  animation:newstick 120s linear infinite;
+  font-family:'IBM Plex Sans',sans-serif; font-size:12px; color:#E0E8F0;
+  padding-left:40px;
+}
+.news-ticker-inner .nitem{margin:0 36px;display:inline;}
+.news-ticker-inner .nitem .nsource{color:var(--gold);font-weight:600;margin-right:6px;font-size:11px;}
+.news-ticker-inner .nitem .nhot{color:#FF8A80;font-weight:700;margin-right:4px;font-size:10px;letter-spacing:1px;}
+@keyframes newstick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+/* news ticker speed = same as markets ticker */
+
+/* ── MARKETS TICKER (top) ── */
+.ticker-wrap{
+  background:var(--navy2); overflow:hidden; white-space:nowrap;
+  padding:6px 0; border-bottom:2px solid var(--blue);
+  position:sticky; top:0; z-index:200;
+}
+.ticker-label{
+  display:inline-flex; align-items:center;
+  background:var(--blue); color:white;
+  font-family:'Oswald',sans-serif; font-size:11px; letter-spacing:2px;
+  padding:0 14px; position:absolute; left:0; top:0; bottom:0; z-index:5;
+}
+.ticker-inner{
+  display:inline-block;
+  animation:ticker 120s linear infinite;
+  padding-left:130px;
+}
+.ticker-inner span{font-family:'IBM Plex Mono',monospace;font-size:11px;color:#90CAF9;margin:0 24px;}
+.ticker-inner .dn{color:#FF7070;} .ticker-inner .up{color:#69F0AE;} .ticker-inner .warn{color:var(--gold);}
+@keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ── CURRENCY WIDGET ── */
+.currency-btn{
+  position:fixed; top:50px; right:0; z-index:190;
+  background:var(--blue); color:white; border:none; cursor:pointer;
+  font-family:'IBM Plex Sans',sans-serif; font-size:12px; font-weight:600;
+  padding:8px 14px 8px 10px; border-radius:6px 0 0 6px;
+  box-shadow:-3px 2px 12px rgba(0,0,0,0.3);
+  display:flex; align-items:center; gap:6px; transition:background 0.2s;
+}
+.currency-btn:hover{background:var(--blue-light);}
+.currency-panel{
+  display:none; position:fixed; top:50px; right:0; z-index:180;
+  width:340px; background:var(--white);
+  border:1px solid var(--border); border-right:none;
+  border-radius:8px 0 0 8px;
+  box-shadow:-8px 0 32px rgba(0,0,0,0.15);
+  max-height:calc(100vh - 60px); overflow-y:auto;
+  animation:slideL 0.3s ease;
+}
+.currency-panel.open{display:block;}
+@keyframes slideL{from{opacity:0;transform:translateX(20px)}to{opacity:1;transform:translateX(0)}}
+.cp-header{background:var(--navy);color:white;padding:14px 18px;display:flex;justify-content:space-between;align-items:center;}
+.cp-header h3{font-family:'Oswald',sans-serif;font-size:16px;letter-spacing:1px;}
+.cp-close{background:none;border:none;color:white;cursor:pointer;font-size:18px;}
+.cp-note{padding:6px 18px;font-size:10px;color:var(--text-muted);border-bottom:1px solid var(--border);}
+.cp-row{display:grid;grid-template-columns:auto 1fr auto;gap:8px;align-items:center;padding:10px 18px;border-bottom:1px solid var(--border);}
+.cp-row:hover{background:var(--section-bg);}
+.cp-flag{font-size:20px;} .cp-name{font-weight:600;font-size:13px;} .cp-pair{font-size:11px;color:var(--text-muted);font-family:'IBM Plex Mono',monospace;}
+.cp-vals{text-align:right;} .cp-current{font-family:'Oswald',sans-serif;font-size:16px;}
+.cp-change{font-size:11px;font-family:'IBM Plex Mono',monospace;}
+.cp-change.dn{color:var(--accent);} .cp-change.up{color:var(--green);} .cp-change.warn{color:var(--accent2);}
+.cp-qtrs{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;padding:6px 18px 10px;background:var(--section-bg);}
+.cp-q{text-align:center;} .cp-q-label{font-size:9px;color:var(--text-muted);text-transform:uppercase;letter-spacing:1px;}
+.cp-q-val{font-size:12px;font-family:'IBM Plex Mono',monospace;font-weight:600;}
+
+/* ── HEADER ── */
+.site-header{
+  background:var(--navy); color:white;
+  padding:22px 48px 18px; border-bottom:3px solid var(--blue);
+}
+.header-top{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:16px;}
+.site-title{font-family:'Merriweather',serif;font-size:clamp(22px,3.5vw,36px);font-weight:900;line-height:1.1;}
+.site-title span{color:var(--gold);}
+.conflict-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(211,47,47,0.2);border:1px solid var(--accent);
+  border-radius:4px;padding:4px 12px;font-size:12px;font-weight:600;
+  letter-spacing:1px;color:#FFCDD2;margin-top:8px;
+}
+
+/* ── CONFLICT TIMELINE BAR ── */
+.conflict-timeline{
+  background:var(--navy2); padding:14px 48px 46px; border-bottom:1px solid rgba(255,255,255,0.08);
+}
+.ctl-label{font-size:11px;color:#90CAF9;font-family:'IBM Plex Mono',monospace;letter-spacing:2px;text-transform:uppercase;margin-bottom:10px;}
+.ctl-bar-wrap{display:flex;align-items:flex-start;gap:0;position:relative;}
+.ctl-start{font-family:'IBM Plex Mono',monospace;font-size:11px;color:white;white-space:nowrap;margin-right:12px;text-align:center;line-height:1.5;min-width:72px;}
+.ctl-start .ctl-day{font-family:'Oswald',sans-serif;font-size:14px;color:var(--gold);}
+.ctl-end{font-family:'IBM Plex Mono',monospace;font-size:11px;color:white;white-space:nowrap;margin-left:12px;text-align:center;line-height:1.5;min-width:72px;}
+.ctl-end .ctl-day{font-family:'Oswald',sans-serif;font-size:14px;color:#FF8A80;}
+
+/* ── ENERGY BANNER ── */
+.energy-banner{background:linear-gradient(135deg,#0D1B2A 0%,#1B2B3B 100%);border-bottom:2px solid var(--gold);padding:18px 48px;}
+.energy-banner-title{font-family:'Oswald',sans-serif;font-size:12px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:12px;display:flex;align-items:center;gap:8px;}
+.energy-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:8px;}
+.e-card{background:rgba(255,255,255,0.06);border:1px solid rgba(249,168,37,0.2);border-radius:5px;padding:10px 12px;transition:border-color 0.2s;}
+.e-card:hover{border-color:rgba(249,168,37,0.5);}
+.e-label{font-size:10px;color:#90CAF9;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:3px;}
+.e-val{font-family:'Oswald',sans-serif;font-size:20px;color:var(--gold);line-height:1;}
+.e-change{font-size:10px;margin-top:2px;color:#FF8A80;}
+.e-src{font-size:9px;color:#546E7A;margin-top:2px;}
+
+/* ── TABS ── */
+.tabs-nav{
+  background:var(--white);border-bottom:2px solid var(--border);
+  padding:0 48px;display:flex;gap:0;overflow-x:auto;
+  position:sticky;top:36px;z-index:150;
+  box-shadow:0 2px 8px rgba(0,0,0,0.06);
+}
+.tab-btn{
+  font-family:'IBM Plex Sans',sans-serif;font-size:13px;font-weight:600;
+  color:var(--text-muted);background:none;border:none;
+  padding:13px 18px;cursor:pointer;border-bottom:3px solid transparent;
+  white-space:nowrap;transition:all 0.2s;letter-spacing:0.3px;
+}
+.tab-btn:hover{color:var(--blue);}
+.tab-btn.active{color:var(--blue);border-bottom-color:var(--blue);}
+.tab-panel{display:none;}
+.tab-panel.active{display:block;}
+
+/* ── LAYOUT ── */
+.page-wrap{max-width:1360px;margin:0 auto;padding:28px 48px 80px;}
+.section-hd{
+  font-family:'Merriweather',serif;font-size:20px;font-weight:700;
+  color:var(--navy);padding-bottom:8px;border-bottom:2px solid var(--blue);
+  margin-bottom:20px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;
+}
+
+/* ── ACRONYM GLOSSARY ── */
+.acronym-bar{
+  background:var(--section-bg);border:1px solid var(--border);
+  border-radius:5px;padding:8px 14px;margin-bottom:18px;
+  font-size:11px;color:var(--text-muted);line-height:1.8;
+}
+.acronym-bar strong{color:var(--navy);}
+
+/* ── EXPERT QUOTES ── */
+.expert-quote{background:var(--info-bg);border-left:4px solid var(--blue);border-radius:0 6px 6px 0;padding:14px 20px;margin:16px 0;}
+.eq-text{font-family:'Merriweather',serif;font-size:14px;font-style:italic;line-height:1.75;color:var(--text);}
+.eq-attr{font-size:11px;color:var(--text-muted);margin-top:8px;font-weight:600;}
+.eq-attr span{color:var(--blue);}
+
+/* ── TABLES ── */
+.data-table{width:100%;border-collapse:collapse;font-size:13px;margin-bottom:20px;}
+.data-table th{background:var(--navy);color:white;font-family:'IBM Plex Sans',sans-serif;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:1px;padding:9px 13px;text-align:left;}
+.data-table th:first-child{border-radius:4px 0 0 0;} .data-table th:last-child{border-radius:0 4px 0 0;}
+.data-table td{padding:9px 13px;border-bottom:1px solid var(--border);vertical-align:top;font-size:12.5px;}
+.data-table tr:hover td{background:var(--blue-pale);}
+.data-table .col-head{font-weight:600;color:var(--navy);}
+.data-table .up{color:var(--accent);font-weight:600;} .data-table .dn{color:var(--green);font-weight:600;}
+.data-table .warn{color:var(--accent2);font-weight:600;} .data-table .neutral{color:var(--text-muted);}
+.src-note{font-size:10px;color:var(--text-muted);font-style:italic;margin-top:-14px;margin-bottom:18px;}
+
+/* ── KPI CARDS ── */
+.kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(175px,1fr));gap:12px;margin-bottom:20px;}
+.kpi-card{background:var(--white);border:1px solid var(--border);border-radius:7px;padding:16px;border-top:3px solid var(--blue);box-shadow:0 1px 5px rgba(0,0,0,0.05);}
+.kpi-card.red{border-top-color:var(--accent);} .kpi-card.gold{border-top-color:var(--gold);}
+.kpi-card.green{border-top-color:var(--green);} .kpi-card.orange{border-top-color:var(--accent2);}
+.kpi-label{font-size:10px;color:var(--text-muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:5px;}
+.kpi-val{font-family:'Oswald',sans-serif;font-size:30px;color:var(--navy);line-height:1;}
+.kpi-val.red{color:var(--accent);} .kpi-val.gold{color:#B8860B;}
+.kpi-val.green{color:var(--green);} .kpi-val.orange{color:var(--accent2);}
+.kpi-sub{font-size:11px;color:var(--text-muted);margin-top:5px;line-height:1.4;}
+.kpi-src{font-size:10px;color:var(--blue);margin-top:5px;font-style:italic;}
+
+/* ── CHART WRAPPERS ── */
+.chart-wrap{background:var(--white);border:1px solid var(--border);border-radius:7px;padding:18px;margin-bottom:20px;box-shadow:0 1px 5px rgba(0,0,0,0.05);}
+.chart-title{font-family:'IBM Plex Sans',sans-serif;font-size:14px;font-weight:600;color:var(--navy);margin-bottom:4px;}
+.chart-sub{font-size:11px;color:var(--text-muted);margin-bottom:14px;line-height:1.6;}
+.chart-explainer{background:var(--section-bg);border-radius:5px;padding:10px 14px;margin-top:12px;font-size:12px;color:var(--text-light);line-height:1.7;border-left:3px solid var(--blue);}
+.chart-grid-2{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:20px;}
+@media(max-width:900px){.chart-grid-2{grid-template-columns:1fr;}}
+
+/* ── COUNTRY CARDS ── */
+.country-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:18px;}
+.country-card{background:var(--white);border:1px solid var(--border);border-radius:7px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.05);transition:box-shadow 0.2s;}
+.country-card:hover{box-shadow:0 4px 18px rgba(0,0,0,0.1);}
+.cc-head{background:var(--navy2);color:white;padding:13px 16px;display:flex;justify-content:space-between;align-items:center;}
+.cc-name{font-family:'Oswald',sans-serif;font-size:19px;letter-spacing:1px;}
+.cc-flag{font-size:26px;}
+.cc-status{font-size:10px;font-weight:600;padding:2px 7px;border-radius:3px;letter-spacing:1px;text-transform:uppercase;margin-top:4px;display:inline-block;}
+.s-critical{background:#C62828;color:white;} .s-severe{background:#E65100;color:white;}
+.s-moderate{background:#F57F17;color:var(--navy);} .s-mixed{background:#37474F;color:white;}
+.cc-body{padding:14px 16px;}
+.cc-stats{display:grid;grid-template-columns:repeat(2,1fr);gap:7px;margin-bottom:12px;}
+.cstat{background:var(--section-bg);border-radius:4px;padding:7px 9px;}
+.cstat-label{font-size:9px;text-transform:uppercase;letter-spacing:1px;color:var(--text-muted);}
+.cstat-val{font-family:'Oswald',sans-serif;font-size:19px;color:var(--navy);}
+.cstat-val.red{color:var(--accent);} .cstat-val.orange{color:var(--accent2);} .cstat-val.green{color:var(--green);}
+.cc-desc{font-size:12px;color:var(--text-light);line-height:1.7;margin-bottom:10px;}
+.cc-driver{background:var(--navy);color:var(--gold);font-family:'Oswald',sans-serif;font-size:11px;letter-spacing:2px;padding:5px 10px;border-radius:3px;text-transform:uppercase;display:inline-block;}
+.export-chips{display:flex;flex-wrap:wrap;gap:4px;margin-top:7px;}
+.export-chip{font-size:10px;padding:2px 7px;border-radius:3px;border:1px solid;}
+.chip-red{background:#FFF5F5;border-color:#FC8181;color:#C53030;}
+.chip-green{background:#F0FFF4;border-color:#68D391;color:#276749;}
+.chip-blue{background:#EBF8FF;border-color:#63B3ED;color:#2C5282;}
+
+/* ── ARTICLES ── */
+.articles-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:16px;}
+.article-card{background:var(--white);border:1px solid var(--border);border-radius:7px;padding:16px;border-top:3px solid var(--blue);box-shadow:0 1px 5px rgba(0,0,0,0.04);transition:box-shadow 0.2s;cursor:pointer;}
+.article-card:hover{box-shadow:0 4px 14px rgba(0,0,0,0.1);}
+.article-card.red{border-top-color:var(--accent);} .article-card.gold{border-top-color:var(--gold);}
+.a-source{font-size:10px;color:var(--blue);font-weight:600;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:5px;display:flex;justify-content:space-between;}
+.a-date{color:var(--text-muted);font-weight:400;}
+.a-title{font-family:'Merriweather',serif;font-size:13.5px;font-weight:700;color:var(--navy);margin-bottom:7px;line-height:1.45;}
+.a-excerpt{font-size:12px;color:var(--text-light);line-height:1.7;}
+.a-tag{font-size:10px;padding:2px 7px;border-radius:3px;background:var(--section-bg);color:var(--text-muted);margin-top:8px;display:inline-block;}
+
+/* ── CYCLE DIAGRAM ── */
+.cycle-wrap{background:var(--white);border:1px solid var(--border);border-radius:7px;padding:22px;margin-bottom:20px;box-shadow:0 1px 5px rgba(0,0,0,0.05);}
+
+/* ── TRADE SLIDER ── */
+.trade-slider-wrap{background:var(--white);border:1px solid var(--border);border-radius:7px;padding:22px;margin-bottom:20px;box-shadow:0 1px 5px rgba(0,0,0,0.05);}
+.trade-slider{width:100%;margin:12px 0;accent-color:var(--blue);cursor:pointer;height:6px;}
+.trade-display{display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:10px;margin-top:14px;}
+.trade-card{background:var(--section-bg);border-radius:5px;padding:12px;border-left:3px solid var(--blue);}
+.trade-sector{font-size:11px;color:var(--text-muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:3px;}
+.trade-val{font-family:'Oswald',sans-serif;font-size:20px;}
+.trade-desc{font-size:11px;color:var(--text-light);margin-top:3px;line-height:1.5;}
+.slider-label{font-size:11px;color:var(--text-muted);display:flex;justify-content:space-between;}
+.period-badge{background:var(--blue);color:white;font-family:'Oswald',sans-serif;font-size:13px;letter-spacing:2px;padding:5px 14px;border-radius:4px;display:inline-block;margin-bottom:14px;}
+
+/* ── WARN / INFO BOXES ── */
+.warn-box{background:var(--warning-bg);border-left:4px solid var(--accent);border-radius:0 5px 5px 0;padding:12px 16px;margin:14px 0;font-size:12.5px;color:#742A2A;line-height:1.7;}
+.info-box{background:var(--info-bg);border-left:4px solid var(--blue-light);border-radius:0 5px 5px 0;padding:12px 16px;margin:14px 0;font-size:12.5px;color:#1A365D;line-height:1.7;}
+
+/* ── MODAL BUTTONS ── */
+.action-btns{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:24px;}
+.btn-primary{background:var(--accent);color:white;font-family:'IBM Plex Sans',sans-serif;font-size:13px;font-weight:600;padding:9px 20px;border:none;border-radius:5px;cursor:pointer;transition:background 0.2s;}
+.btn-primary:hover{background:#B71C1C;}
+.btn-secondary{background:var(--navy);color:white;font-family:'IBM Plex Sans',sans-serif;font-size:13px;font-weight:600;padding:9px 20px;border:none;border-radius:5px;cursor:pointer;transition:background 0.2s;}
+.btn-secondary:hover{background:var(--navy2);}
+
+/* ── MODALS ── */
+.modal-overlay{display:none;position:fixed;inset:0;z-index:300;background:rgba(13,27,42,0.85);align-items:center;justify-content:center;animation:fadeIn 0.3s ease;}
+.modal-overlay.open{display:flex;}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.modal-box{background:var(--white);border-radius:9px;padding:28px;max-width:700px;width:92%;max-height:88vh;overflow-y:auto;animation:slideUp 0.35s ease;box-shadow:0 24px 80px rgba(0,0,0,0.4);}
+@keyframes slideUp{from{transform:translateY(30px);opacity:0}to{transform:translateY(0);opacity:1}}
+.modal-h{font-family:'Merriweather',serif;font-size:21px;font-weight:900;color:var(--navy);margin-bottom:5px;}
+.modal-sub{font-size:12px;color:var(--text-muted);margin-bottom:18px;}
+.modal-close-btn{background:none;border:1px solid var(--border);color:var(--text-muted);padding:7px 16px;border-radius:4px;cursor:pointer;font-size:13px;margin-top:14px;transition:all 0.2s;}
+.modal-close-btn:hover{background:var(--section-bg);color:var(--text);}
+
+/* ── FOOTER ── */
+.site-footer{background:var(--navy);color:#90CAF9;padding:32px 48px 80px;font-size:12px;line-height:1.9;margin-top:20px;}
+.site-footer a{color:var(--gold);text-decoration:none;}
+.footer-title{font-family:'Merriweather',serif;font-size:17px;font-weight:700;color:white;margin-bottom:10px;}
+.footer-credit{color:white;font-family:'Oswald',sans-serif;font-size:15px;letter-spacing:2px;margin-top:18px;padding-top:16px;border-top:1px solid rgba(255,255,255,0.1);}
+.footer-credit span{color:var(--gold);}
+.footer-copy{color:#546E7A;font-size:11px;margin-top:6px;}
+.footer-disclaimer{color:#546E7A;font-size:11px;margin-top:12px;padding-top:12px;border-top:1px solid rgba(255,255,255,0.07);}
+.footer-sources-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px;margin-top:16px;}
+.footer-source-item{font-size:11px;color:#7B97B4;}
+
+/* ── TWO-COL ── */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:20px;}
+@media(max-width:768px){.two-col{grid-template-columns:1fr;}.page-wrap{padding:18px 18px 80px;}.tabs-nav{padding:0 14px;}.site-header{padding:16px 18px;}.energy-banner{padding:14px 18px;}.conflict-timeline{padding:12px 18px;}.site-footer{padding:24px 18px 80px;}}
+::-webkit-scrollbar{width:6px;height:6px;}::-webkit-scrollbar-track{background:var(--bg);}::-webkit-scrollbar-thumb{background:#CBD5E0;border-radius:3px;}
+</style>
+</head>
+<body data-new-gr-c-s-check-loaded="8.936.0" data-gr-ext-installed="">
+
+<!-- ══════════════════ MARKETS TICKER (TOP) ══════════════════ -->
+<div class="ticker-wrap">
+  <div class="ticker-label">LIVE MARKETS</div>
+  <div class="ticker-inner">
+    <span>BRENT CRUDE <span class="up">$94/bbl -12% ON CEASEFIRE (was $118 Mar 31)</span></span>
+    <span>WTI (West Texas Intermediate) <span class="up">$95/bbl -15%</span></span>
+    <span>EU NAT GAS TTF (Title Transfer Facility) <span class="dn">~62 EUR/MWh +94% vs pre-conflict</span></span>
+    <span>US GASOLINE <span class="dn">$4.11/gal +38% since Feb 28 | EIA Apr peak: $4.30</span></span>
+    <span>US DIESEL <span class="dn">$5.62/gal +49% — 4-YEAR HIGH</span></span>
+    <span>GLOBAL EQUITIES <span class="up">SURGING — ceasefire deal Apr 8</span></span>
+    <span>USD/INR (Indian Rupee) <span class="dn">94.20 — RECORD LOW</span></span>
+    <span>EUR/USD <span class="dn">1.038 FALLING</span></span>
+    <span>USD/JPY (Japanese Yen) <span class="dn">157.4 WEAK</span></span>
+    <span>GOLD <span class="up">$3,220/oz SAFE HAVEN</span></span>
+    <span>FERTILIZER <span class="dn">+65% SHOCK | FOOD CRISIS RISK</span></span>
+    <span>SHIPPING RATES <span class="dn">+40%</span></span>
+    <span>US UNEMPLOYMENT <span class="dn">4.4% RISING</span></span>
+    <span>RECESSION ODDS <span class="warn">~50% — MOODY'S | EIA DIESEL FORECAST: $4.80/gal 2026 AVG</span></span>
+    <span>STRAIT OF HORMUZ <span class="warn">2-WEEK CEASEFIRE — DAY <span id="dayNumTicker">40</span></span></span>
+    <span>US 10-YR TREASURY YIELD <span class="dn">4.82%</span></span>
+    <span>LNG ASIA SPOT <span class="dn">+140% | QATAR RAS LAFFAN STRUCK MAR 18</span></span>
+    <span>IEA (International Energy Agency) <span class="warn">LARGEST SUPPLY DISRUPTION IN HISTORY</span></span>
+    <span>BRENT CRUDE <span class="up">$94/bbl -12% ON CEASEFIRE (was $118 Mar 31)</span></span>
+    <span>WTI <span class="up">$95/bbl -15%</span></span>
+    <span>EU NAT GAS TTF <span class="dn">~62 EUR/MWh +94%</span></span>
+    <span>US GASOLINE <span class="dn">$4.11/gal +38%</span></span>
+    <span>US DIESEL <span class="dn">$5.62/gal +49%</span></span>
+    <span>GLOBAL EQUITIES <span class="up">SURGING ON CEASEFIRE</span></span>
+    <span>FERTILIZER <span class="dn">+65%</span></span>
+    <span>SHIPPING RATES <span class="dn">+40%</span></span>
+    <span>RECESSION ODDS <span class="warn">~50% — MOODY'S</span></span>
+    <span>LNG ASIA SPOT <span class="dn">+140%</span></span>
+    <span>IEA RESERVE RELEASE <span class="dn">400 MILLION BARRELS — RECORD</span></span>
+  </div>
+</div>
+
+<!-- ══════════════════ CURRENCY PANEL ══════════════════ -->
+<button class="currency-btn" onclick="toggleCurrency()">Currency Tracker</button>
+<div class="currency-panel" id="currencyPanel">
+  <div class="cp-header"><h3>Currency Tracker</h3><button class="cp-close" onclick="toggleCurrency()">X</button></div>
+  <div class="cp-note">3-Quarter Forecasts — Q2/Q3/Q4 2026 | Source: Goldman Sachs, Oxford Economics</div>
+  <div class="cp-note" style="padding-top:2px;">bps = basis points (1/100th of a percent) | Q = Quarter | FX = Foreign Exchange</div>
+  <div class="cp-row"><span class="cp-flag">US</span><div><div class="cp-name">US Dollar (DXY Index)</div><div class="cp-pair">Safe-haven demand; Flight to quality</div></div><div class="cp-vals"><div class="cp-current" style="color:#1565C0">STRONG</div><div class="cp-change warn">Rising on safe-haven flows</div></div></div>
+  <div class="cp-qtrs"><div class="cp-q"><div class="cp-q-label">Q2 Apr-Jun</div><div class="cp-q-val" style="color:#E53E3E">Strong</div></div><div class="cp-q"><div class="cp-q-label">Q3 Jul-Sep</div><div class="cp-q-val" style="color:#F57C00">Moderate</div></div><div class="cp-q"><div class="cp-q-label">Q4 Oct-Dec</div><div class="cp-q-val" style="color:#2E7D32">Softens</div></div></div>
+  <div class="cp-row"><span class="cp-flag">EU</span><div><div class="cp-name">Euro (EUR/USD)</div><div class="cp-pair">European Central Bank postponed cuts Mar 19</div></div><div class="cp-vals"><div class="cp-current" style="color:#E53E3E">1.038</div><div class="cp-change dn">Falling — stagflation risk</div></div></div>
+  <div class="cp-qtrs"><div class="cp-q"><div class="cp-q-label">Q2 Apr-Jun</div><div class="cp-q-val" style="color:#E53E3E">1.02-1.05</div></div><div class="cp-q"><div class="cp-q-label">Q3 Jul-Sep</div><div class="cp-q-val" style="color:#F57C00">1.03-1.07</div></div><div class="cp-q"><div class="cp-q-label">Q4 Oct-Dec</div><div class="cp-q-val" style="color:#2E7D32">1.05-1.09</div></div></div>
+  <div class="cp-row"><span class="cp-flag">JP</span><div><div class="cp-name">Japanese Yen (USD/JPY)</div><div class="cp-pair">90% oil from Middle East via Hormuz</div></div><div class="cp-vals"><div class="cp-current" style="color:#E53E3E">157.4</div><div class="cp-change dn">Weakening — trade balance hit</div></div></div>
+  <div class="cp-qtrs"><div class="cp-q"><div class="cp-q-label">Q2 Apr-Jun</div><div class="cp-q-val" style="color:#E53E3E">155-160</div></div><div class="cp-q"><div class="cp-q-label">Q3 Jul-Sep</div><div class="cp-q-val" style="color:#E53E3E">152-158</div></div><div class="cp-q"><div class="cp-q-label">Q4 Oct-Dec</div><div class="cp-q-val" style="color:#F57C00">148-155</div></div></div>
+  <div class="cp-row"><span class="cp-flag">CN</span><div><div class="cp-name">Chinese Yuan (USD/CNY)</div><div class="cp-pair">People's Bank of China defending band</div></div><div class="cp-vals"><div class="cp-current" style="color:#F57C00">7.28</div><div class="cp-change warn">Modest weakening pressure</div></div></div>
+  <div class="cp-qtrs"><div class="cp-q"><div class="cp-q-label">Q2 Apr-Jun</div><div class="cp-q-val" style="color:#E53E3E">7.25-7.45</div></div><div class="cp-q"><div class="cp-q-label">Q3 Jul-Sep</div><div class="cp-q-val" style="color:#F57C00">7.20-7.40</div></div><div class="cp-q"><div class="cp-q-label">Q4 Oct-Dec</div><div class="cp-q-val" style="color:#F57C00">7.10-7.30</div></div></div>
+  <div class="cp-row"><span class="cp-flag">IN</span><div><div class="cp-name">Indian Rupee (USD/INR)</div><div class="cp-pair">Record low; fuel rationing active</div></div><div class="cp-vals"><div class="cp-current" style="color:#E53E3E">94.20</div><div class="cp-change dn">RECORD LOW — crisis level</div></div></div>
+  <div class="cp-qtrs"><div class="cp-q"><div class="cp-q-label">Q2 Apr-Jun</div><div class="cp-q-val" style="color:#E53E3E">94-96</div></div><div class="cp-q"><div class="cp-q-label">Q3 Jul-Sep</div><div class="cp-q-val" style="color:#E53E3E">92-97</div></div><div class="cp-q"><div class="cp-q-label">Q4 Oct-Dec</div><div class="cp-q-val" style="color:#F57C00">90-94</div></div></div>
+  <div class="cp-row"><span class="cp-flag">KR</span><div><div class="cp-name">South Korean Won (USD/KRW)</div><div class="cp-pair">Won 100 trillion emergency stabilization fund</div></div><div class="cp-vals"><div class="cp-current" style="color:#E53E3E">1,432</div><div class="cp-change dn">Emergency rescue mode</div></div></div>
+  <div class="cp-qtrs"><div class="cp-q"><div class="cp-q-label">Q2 Apr-Jun</div><div class="cp-q-val" style="color:#E53E3E">1,400-1,460</div></div><div class="cp-q"><div class="cp-q-label">Q3 Jul-Sep</div><div class="cp-q-val" style="color:#F57C00">1,370-1,430</div></div><div class="cp-q"><div class="cp-q-label">Q4 Oct-Dec</div><div class="cp-q-val" style="color:#F57C00">1,340-1,400</div></div></div>
+  <div class="cp-row"><span class="cp-flag">RU</span><div><div class="cp-name">Russian Ruble (USD/RUB)</div><div class="cp-pair">Oil price windfall vs. ongoing sanctions</div></div><div class="cp-vals"><div class="cp-current" style="color:#2E7D32">84</div><div class="cp-change up">Short-term gain from oil prices</div></div></div>
+  <div class="cp-qtrs"><div class="cp-q"><div class="cp-q-label">Q2 Apr-Jun</div><div class="cp-q-val" style="color:#2E7D32">80-90</div></div><div class="cp-q"><div class="cp-q-label">Q3 Jul-Sep</div><div class="cp-q-val" style="color:#2E7D32">82-94</div></div><div class="cp-q"><div class="cp-q-label">Q4 Oct-Dec</div><div class="cp-q-val" style="color:#F57C00">88-100</div></div></div>
+  <div class="cp-row"><span class="cp-flag">BR</span><div><div class="cp-name">Brazilian Real (USD/BRL)</div><div class="cp-pair">Oil exporter vs. high public debt risk</div></div><div class="cp-vals"><div class="cp-current" style="color:#F57C00">5.72</div><div class="cp-change warn">Debt refinancing fears</div></div></div>
+  <div class="cp-qtrs"><div class="cp-q"><div class="cp-q-label">Q2 Apr-Jun</div><div class="cp-q-val" style="color:#E53E3E">5.6-5.9</div></div><div class="cp-q"><div class="cp-q-label">Q3 Jul-Sep</div><div class="cp-q-val" style="color:#F57C00">5.4-5.7</div></div><div class="cp-q"><div class="cp-q-label">Q4 Oct-Dec</div><div class="cp-q-val" style="color:#F57C00">5.2-5.6</div></div></div>
+</div>
+
+<!-- ══════════════════ HEADER ══════════════════ -->
+<div class="site-header">
+  <div class="header-top">
+    <div>
+      <div class="site-title">WHY <span>PEACE MATTERS</span> FOR THE ECONOMY</div>
+      <div class="conflict-badge"><div class="pulse-dot"></div>US-IRAN CONFLICT — DAY <span id="dayNum">40</span> — CEASEFIRE TALKS ONGOING</div>
+    </div>
+    <div class="header-date-display" style="text-align:right;font-family:'IBM Plex Mono',monospace;font-size:11px;color:#90CAF9;line-height:1.9;">
+      <div style="color:#90CAF9;font-size:10px;">Analysis current as of April 8, 2026</div>
+      <div style="color:#546E7A;font-size:10px;">Day 40 since conflict began February 28, 2026</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════ CONFLICT TIMELINE BAR ══════════════════ -->
+<div class="conflict-timeline">
+  <div class="ctl-label">Conflict Timeline — Days Elapsed</div>
+  <div class="ctl-bar-wrap">
+    <div class="ctl-start">
+      <div class="ctl-day">Day 0</div>
+      <div>Feb 28, 2026</div>
+      <div style="font-size:9px;color:#546E7A;">Conflict Begins</div>
+    </div>
+    <div class="ctl-track" id="ctlTrack" style="position:relative;flex:1;height:28px;margin:0 12px;">
+      <!-- background track -->
+      <div style="position:absolute;top:10px;left:0;right:0;height:8px;background:rgba(255,255,255,0.1);border-radius:4px;"></div>
+      <!-- fill bar -->
+      <div id="ctlFill" style="position: absolute; top: 10px; left: 0px; height: 8px; border-radius: 4px; background: linear-gradient(90deg, rgb(21, 101, 192), rgb(211, 47, 47)); width: 88.8889%; transition: width 1s;"></div>
+      <!-- current day marker -->
+      <div id="ctlNeedle" style="position: absolute; top: 3px; width: 3px; height: 22px; background: rgb(255, 82, 82); border-radius: 2px; left: 88.8889%; transition: left 1s; transform: translateX(-50%);"></div>
+      <!-- Dynamic today label — moves with needle -->
+      <div id="ctlTodayLabel" style="position: absolute; top: -18px; font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 9px; color: rgb(255, 138, 128); font-weight: 700; white-space: nowrap; transform: translateX(-50%); background: rgba(211, 47, 47, 0.3); padding: 1px 5px; border-radius: 3px; left: 88.8889%;">Day 40 — Apr 8, 2026</div>
+      <!-- tick marks every 5 days -->
+      <div style="position:absolute;top:20px;left:0%;transform:translateX(-50%);font-family:'IBM Plex Mono',monospace;font-size:8px;color:#546E7A;white-space:nowrap;text-align:center;">Day 0<br>Feb 28</div>
+      <div style="position:absolute;top:20px;left:11.1%;transform:translateX(-50%);font-family:'IBM Plex Mono',monospace;font-size:8px;color:#546E7A;white-space:nowrap;text-align:center;">Day 5<br>Mar 5</div>
+      <div style="position:absolute;top:20px;left:22.2%;transform:translateX(-50%);font-family:'IBM Plex Mono',monospace;font-size:8px;color:#546E7A;white-space:nowrap;text-align:center;">Day 10<br>Mar 10</div>
+      <div style="position:absolute;top:20px;left:33.3%;transform:translateX(-50%);font-family:'IBM Plex Mono',monospace;font-size:8px;color:#546E7A;white-space:nowrap;text-align:center;">Day 15<br>Mar 15</div>
+      <div style="position:absolute;top:20px;left:44.4%;transform:translateX(-50%);font-family:'IBM Plex Mono',monospace;font-size:8px;color:#546E7A;white-space:nowrap;text-align:center;">Day 20<br>Mar 20</div>
+      <div style="position:absolute;top:20px;left:55.5%;transform:translateX(-50%);font-family:'IBM Plex Mono',monospace;font-size:8px;color:#546E7A;white-space:nowrap;text-align:center;">Day 25<br>Mar 25</div>
+      <div style="position:absolute;top:20px;left:66.7%;transform:translateX(-50%);font-family:'IBM Plex Mono',monospace;font-size:8px;color:#546E7A;white-space:nowrap;text-align:center;">Day 30<br>Mar 30</div>
+      <div style="position:absolute;top:20px;left:77.8%;transform:translateX(-50%);font-family:'IBM Plex Mono',monospace;font-size:8px;color:#90CAF9;white-space:nowrap;text-align:center;font-weight:600;">Day 33<br>Apr 1 TODAY</div>
+      <div style="position:absolute;top:20px;left:88.9%;transform:translateX(-50%);font-family:'IBM Plex Mono',monospace;font-size:8px;color:#546E7A;white-space:nowrap;text-align:center;">Day 40<br>Apr 9</div>
+      <div style="position:absolute;top:20px;left:100%;transform:translateX(-50%);font-family:'IBM Plex Mono',monospace;font-size:8px;color:#546E7A;white-space:nowrap;text-align:center;">Day 45<br>Apr 14</div>
+    </div>
+    <div class="ctl-end">
+      <div class="ctl-day" style="color:#FF8A80;">Day 45</div>
+      <div>Apr 14, 2026</div>
+      <div style="font-size:9px;color:#546E7A;">45-Day Mark</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════ ENERGY BANNER ══════════════════ -->
+<div class="energy-banner">
+  <div class="energy-banner-title" id="energyBannerTitle">Energy Price Shock Tracker — April 8, 2026</div>
+  <div style="background:rgba(211,47,47,0.15);border:1px solid rgba(211,47,47,0.4);border-radius:5px;padding:8px 14px;margin-bottom:10px;font-size:11px;color:#FFCDD2;font-family:'IBM Plex Sans',sans-serif;">
+    <strong style="color:#FF8A80;">BREAKING Apr 8:</strong> Oil plunged 
+12-15% after Trump announced a 2-week "double-sided ceasefire" 
+contingent on Iran reopening the Strait of Hormuz. Brent fell from $109 
+to ~$94/bbl. Iran agreed to temporarily reopen the strait if all attacks
+ halt. Markets surging. EIA still forecasts Brent peaks at $115/bbl in 
+Q2 if ceasefire fails.
+    <span style="color:#546E7A;margin-left:8px;">Sources: Trading Economics, Fortune, EIA Short-Term Energy Outlook (April 2026)</span>
+  </div>
+  <div class="energy-grid">
+    <div class="e-card"><div class="e-label">Brent Crude Oil (Today)</div><div class="e-val" style="color:#FFB347;">$94/bbl</div><div class="e-change" style="color:#69F0AE;">-12% on ceasefire news (was $118 Mar 31)</div><div class="e-src">bbl = barrel (159 litres) | Source: Trading Economics / Fortune, Apr 8, 2026</div></div>
+    <div class="e-card"><div class="e-label">WTI Crude (US, Today)</div><div class="e-val" style="color:#FFB347;">$95/bbl</div><div class="e-change" style="color:#69F0AE;">-15% | Peak: $115 Apr 6 | EIA Q2 forecast: $115</div><div class="e-src">WTI = West Texas Intermediate | Source: EIA STEO April 2026</div></div>
+    <div class="e-card"><div class="e-label">EU Nat Gas TTF</div><div class="e-val">~€62/MWh</div><div class="e-change">Near doubled since Feb 27 | EU storage 30%</div><div class="e-src">TTF = Title Transfer Facility | MWh = megawatt-hour | Source: ECB / Wikipedia</div></div>
+    <div class="e-card"><div class="e-label">US Gasoline (Avg)</div><div class="e-val">$4.11/gal</div><div class="e-change">+38% since Feb 28 | EIA Apr peak forecast: $4.30</div><div class="e-src">gal = gallon | Source: AAA / EIA Short-Term Energy Outlook, Apr 2026</div></div>
+    <div class="e-card"><div class="e-label">US Diesel</div><div class="e-val">$5.62/gal</div><div class="e-change">+49% since conflict began | EIA 2026 avg: $4.80</div><div class="e-src">Record high since 2022 | Source: AAA / EIA STEO, Apr 2026</div></div>
+    <div class="e-card"><div class="e-label">Hormuz Supply Loss</div><div class="e-val">20M bpd</div><div class="e-change">Largest disruption in history — IEA</div><div class="e-src">bpd = barrels per day | M = million | Source: IEA Emergency Report, March 2026</div></div>
+    <div class="e-card"><div class="e-label">Fertilizer (global)</div><div class="e-val">+65%</div><div class="e-change">33% of world supply via Hormuz | Food crisis risk</div><div class="e-src">Source: Moody's Analytics / Fortune, Mar 2026</div></div>
+    <div class="e-card"><div class="e-label">LNG Asia Spot</div><div class="e-val">+140%</div><div class="e-change">Qatar Ras Laffan hit Mar 18; 17% LNG capacity lost</div><div class="e-src">LNG = Liquefied Natural Gas | Source: Wikipedia 2026 Iran Fuel Crisis</div></div>
+  </div>
+</div>
+
+<!-- ══════════════════ ACTION BUTTONS ══════════════════ -->
+<div class="page-wrap" style="padding-top:22px;padding-bottom:0;">
+  <div class="action-btns">
+    <button class="btn-primary" onclick="openWarModal()">What If Conflict Continues 10 More Days?</button>
+    <button class="btn-secondary" onclick="openRecModal()">Recession and GDP Decline Analysis</button>
+  </div>
+</div>
+
+<!-- WAR MODAL -->
+<div class="modal-overlay" id="warModal" onclick="if(event.target===this)closeWarModal()">
+  <div class="modal-box">
+    <div class="modal-h">10-Day Conflict Extension Scenario</div>
+    <div class="modal-sub">Projection: Day 33 to Day 43 | Sources: Goldman Sachs, Oxford Economics, Dallas Federal Reserve, Bloomberg</div>
+    <div class="acronym-bar"><strong>Key terms:</strong> bpd = barrels 
+per day | bbl = barrel | ECB = European Central Bank | BoE = Bank of 
+England | bps = basis points (1 bps = 0.01%) | GDP = Gross Domestic 
+Product | Q2 = April-June 2026</div>
+    <div class="warn-box">Critical window: Oil industry executives warn 
+the Strait of Hormuz must reopen by mid-April or economic fallout 
+escalates sharply. By Day 43, global supply losses could double to 10 
+million barrels per day (bpd) — the largest crude supply loss in 
+recorded history.</div>
+    <table class="data-table" style="margin-top:14px;">
+      <thead><tr><th>Indicator</th><th>Current (Day 33)</th><th>Day 43 Projection</th><th>Source</th></tr></thead>
+      <tbody>
+        <tr><td class="col-head">Brent Crude Price</td><td>$106 per barrel</td><td class="up">$140-$160 per barrel</td><td>Goldman Sachs</td></tr>
+        <tr><td class="col-head">US Gasoline Price</td><td>$4.22 per gallon</td><td class="up">$5.50+ per gallon</td><td>CNBC / AAA</td></tr>
+        <tr><td class="col-head">Global Oil Supply Loss</td><td>~5 million bpd (5%)</td><td class="up">~10 million bpd (10%)</td><td>BCA Research</td></tr>
+        <tr><td class="col-head">US Q2 GDP (annualized)</td><td>Slowing</td><td class="up">-2.9 percentage points</td><td>Dallas Federal Reserve Model</td></tr>
+        <tr><td class="col-head">Eurozone GDP growth</td><td>1.2% baseline</td><td class="up">0.5% year-on-year — near stagnation</td><td>Capital Economics</td></tr>
+        <tr><td class="col-head">China GDP growth</td><td>4.4% baseline</td><td class="up">Below 3% year-on-year</td><td>Capital Economics</td></tr>
+        <tr><td class="col-head">Global Inflation</td><td>Rising</td><td class="up">7.7% peak</td><td>Oxford Economics</td></tr>
+        <tr><td class="col-head">US Jobs Lost per Month</td><td>~10,000/month suppressed</td><td class="up">10,000-15,000/month</td><td>Goldman Sachs</td></tr>
+        <tr><td class="col-head">ECB Rate Response</td><td>On hold</td><td class="up">+100 basis points hike</td><td>Oxford Economics</td></tr>
+        <tr><td class="col-head">EU Diesel Shortage</td><td>Risk building</td><td class="up">Physical shortage — April 2026</td><td>Shell Chief Executive</td></tr>
+      </tbody>
+    </table>
+    <div class="expert-quote" style="margin:0;">
+      <div class="eq-text">"The clock is ticking on the US-Israeli 
+conflict in Iran. The emerging view from oil industry executives is that
+ the economic fallout could escalate sharply if the Strait of Hormuz is 
+not reopened within roughly the next one to three weeks."</div>
+      <div class="eq-attr">— <span>CNBC</span>, March 30, 2026</div>
+    </div>
+    <button class="modal-close-btn" onclick="closeWarModal()">Close</button>
+  </div>
+</div>
+
+<!-- RECESSION MODAL -->
+<div class="modal-overlay" id="recModal" onclick="if(event.target===this)closeRecModal()">
+  <div class="modal-box">
+    <div class="modal-h">Recession, GDP Decline and Unemployment Analysis</div>
+    <div class="modal-sub">Sources: Oxford Economics, Goldman Sachs, Moody's Analytics, Dallas Federal Reserve, International Monetary Fund</div>
+    <div class="acronym-bar"><strong>Key terms:</strong> GDP = Gross 
+Domestic Product | pp = percentage points | Q2 = April-June | Q3 = 
+July-September | Q4 = October-December | PCE = Personal Consumption 
+Expenditures (US inflation measure) | y/y = year-on-year</div>
+    <div class="kpi-grid">
+      <div class="kpi-card red"><div class="kpi-label">US Recession Probability</div><div class="kpi-val red">~50%</div><div class="kpi-sub">Moody's Zandi: "creeping toward 50%" by mid-2026</div></div>
+      <div class="kpi-card"><div class="kpi-label">World GDP Growth 2026</div><div class="kpi-val">1.4%</div><div class="kpi-sub">Oxford Economics prolonged conflict scenario (down from 2.6% baseline)</div></div>
+      <div class="kpi-card red"><div class="kpi-label">Q2 GDP Shock</div><div class="kpi-val red">-2.9pp</div><div class="kpi-sub">Annualized hit to global real GDP (Dallas Federal Reserve)</div></div>
+      <div class="kpi-card orange"><div class="kpi-label">Global Inflation Peak</div><div class="kpi-val orange">7.7%</div><div class="kpi-sub">Near 2022 pandemic peak — but GDP falls simultaneously (Oxford Economics)</div></div>
+      <div class="kpi-card red"><div class="kpi-label">US Unemployment Q3</div><div class="kpi-val red">4.6%</div><div class="kpi-sub">Goldman Sachs projection (from current 4.4%)</div></div>
+      <div class="kpi-card gold"><div class="kpi-label">Consumer Recession Fear</div><div class="kpi-val gold">65%</div><div class="kpi-sub">NerdWallet March 2026: percentage expecting recession in 12 months</div></div>
+    </div>
+    <table class="data-table">
+      <thead><tr><th>Scenario</th><th>World GDP 2026</th><th>US GDP Q4-to-Q4</th><th>Global Inflation</th><th>Conflict Duration</th></tr></thead>
+      <tbody>
+        <tr><td class="col-head">Baseline (Short conflict)</td><td>2.6%</td><td>2.4%</td><td>3.8%</td><td>Less than 6 weeks</td></tr>
+        <tr><td class="col-head">Adverse (Extended conflict)</td><td>2.1%</td><td>1.9%</td><td>5.5%</td><td>6 to 10 weeks</td></tr>
+        <tr><td class="col-head">Severely Adverse</td><td class="up">1.4%</td><td class="up">1.8%</td><td class="up">7.7%</td><td>10+ weeks</td></tr>
+        <tr><td class="col-head">Prolonged (6 months)</td><td class="up">Contraction</td><td class="up">Recession</td><td class="up">7.7%+</td><td>6 months</td></tr>
+      </tbody>
+    </table>
+    <div class="info-box">An oil shock has preceded virtually every US 
+recession since the Great Depression, except the COVID-19 pandemic. The 
+world last contracted in GDP terms in 2020 (pandemic) and 2009 (Global 
+Financial Crisis).</div>
+    <button class="modal-close-btn" onclick="closeRecModal()">Close</button>
+  </div>
+</div>
+
+<!-- ══════════════════ TABS ══════════════════ -->
+<nav class="tabs-nav" id="tabsNav">
+  <button class="tab-btn active" onclick="showTab('overview',this)">Overview</button>
+  <button class="tab-btn" onclick="showTab('usa',this)">US Economy</button>
+  <button class="tab-btn" onclick="showTab('trade',this)">Trade and Exports</button>
+  <button class="tab-btn" onclick="showTab('countries',this)">Country Impact</button>
+  <button class="tab-btn" onclick="showTab('press',this)">Expert Analysis</button>
+</nav>
+
+<!-- ═══════════ TAB: OVERVIEW ═══════════ -->
+<div id="tab-overview" class="tab-panel active">
+<div class="page-wrap">
+
+  <div class="acronym-bar"><strong>Key acronyms used in this section:</strong>
+ bpd = barrels per day | bbl = barrel (of oil, 159 litres) | MWh = 
+megawatt-hour | LNG = Liquefied Natural Gas | ECB = European Central 
+Bank (Europe's central bank) | BoE = Bank of England | GDP = Gross 
+Domestic Product | IEA = International Energy Agency | FDI = Foreign 
+Direct Investment | pp = percentage points | Q2 = April to June 2026 | 
+Q3 = July to September 2026 | Q4 = October to December 2026</div>
+
+  <div class="section-hd">Fuel Price Timeline Since Conflict Began</div>
+  <div class="chart-wrap">
+    <div class="chart-title">How Energy Prices Changed — From Conflict Start to Today, with EIA Forward Forecasts</div>
+    <div class="chart-sub">
+      This chart tracks three energy prices from February 27, 2026 (pre-conflict) through <strong>April 8, 2026 (TODAY — Day <span id="fuelChartDay">39</span>)</strong>, then projects forward using EIA and Goldman Sachs forecasts. The <strong style="color:#C62828">red line</strong> shows Brent crude oil ($/barrel, left axis). The <strong style="color:#F57C00">orange line</strong> shows US average retail gasoline ($/gallon, right axis). The <strong style="color:#1565C0">blue line</strong> shows EU natural gas TTF benchmark (EUR/megawatt-hour, left axis). <em>Dotted sections = EIA Short-Term Energy Outlook projections (April 2026). Today's marker shown as larger point.</em>
+    </div>
+    <canvas id="fuelChart" height="485" style="display: block; box-sizing: border-box; height: 388px; width: 1226px;" width="1533"></canvas>
+    <div class="chart-explainer">
+      <strong>What this chart shows (April 8 update):</strong> Brent 
+crude peaked at $118-120/bbl on March 31 — the largest quarterly oil 
+price increase on an inflation-adjusted basis since 1988 (EIA). On April
+ 8, oil fell 12-15% after Trump announced a 2-week conditional 
+ceasefire, bringing Brent to ~$94/bbl. US retail gasoline peaked at 
+$4.11/gal (+38% from Feb 28) while diesel hit $5.62/gal (+49%) — both 
+the highest since 2022 (AAA). The EIA Short-Term Energy Outlook (April 
+2026) forecasts Brent peaks at $115/bbl in Q2 if conflict resumes, falls
+ below $90/bbl in Q4, and averages $76/bbl in 2027. EU gas roughly 
+doubled from €32 to €62/MWh and remains elevated due to historically low
+ European storage (30% capacity). If the 2-week ceasefire holds and 
+Hormuz reopens, EIA projects rapid price relief. If it fails, Q2 price 
+spikes return.
+      <br><br><strong>Sources:</strong> EIA Short-Term Energy Outlook 
+(April 2026) — official US government energy data; AAA Fuel Gauge Report
+ (April 6-8, 2026); Fortune (April 8, 2026); Trading Economics (April 8,
+ 2026); EIA Q1 2026 Petroleum Market Quarterly Review.
+    </div>
+  </div>
+
+  <div class="section-hd">Price Shocks Across Commodities and Sectors — Updated April 8, 2026</div>
+  <div class="acronym-bar"><strong>Column guide:</strong> Q2 = Apr-Jun 
+2026 | Q3 = Jul-Sep 2026 | Q4 = Oct-Dec 2026 | bbl = barrel | MWh = 
+megawatt-hour | gal = gallon | bps = basis points | EIA = US Energy 
+Information Administration (official US government energy data)</div>
+  <div class="info-box" style="margin-bottom:14px;"><strong>April 8 Update:</strong>
+ Oil fell 12-15% today after Trump announced a 2-week "double-sided 
+ceasefire" contingent on Iran reopening the Strait of Hormuz. Brent fell
+ from ~$109 to ~$94/bbl. If ceasefire holds and Hormuz reopens, EIA 
+forecasts Brent below $90 in Q4 and averaging $76/bbl in 2027. If 
+ceasefire fails, EIA projects Brent peaks at $115/bbl in Q2. Sources: 
+EIA Short-Term Energy Outlook (April 2026), Trading Economics, Fortune 
+(April 8, 2026).</div>
+  <table class="data-table">
+    <thead><tr><th>Commodity or Sector</th><th>Pre-Conflict (Feb 27)</th><th>Peak (Mar 31)</th><th>Today (Apr 8)</th><th>Q2 2026 Forecast</th><th>Q3 2026 Forecast</th><th>Q4 2026 Forecast</th><th>Key Impact</th></tr></thead>
+    <tbody>
+      <tr><td class="col-head">Brent Crude Oil</td><td>$72/bbl ($61 Jan 1)</td><td class="up">$118-120/bbl</td><td class="warn">~$94/bbl</td><td class="up">$115/bbl (EIA, if conflict resumes)</td><td class="warn">Below $90 if Hormuz reopens</td><td class="warn">~$76/bbl avg (EIA 2027)</td><td>Largest Q1 price increase on inflation-adjusted basis since 1988 (EIA); every $10/bbl = +0.2pp US PCE inflation (Goldman Sachs)</td></tr>
+      <tr><td class="col-head">US Gasoline (avg retail)</td><td>~$3.10/gal</td><td class="up">$4.02/gal</td><td class="warn">$4.11/gal</td><td class="up">~$4.30/gal peak (EIA)</td><td class="warn">~$3.70/gal avg</td><td class="warn">~$3.00/gal (EIA yr-end)</td><td>+38% since Feb 28 (AAA); EIA 2026 full-year average forecast $3.70/gal; ~$1,200/yr extra per household</td></tr>
+      <tr><td class="col-head">US Diesel (avg retail)</td><td>~$3.77/gal</td><td class="up">$5.40/gal (Mar 30)</td><td class="up">$5.62/gal</td><td class="up">$5.80+/gal (EIA peak Apr)</td><td class="warn">$4.50-5.00/gal</td><td class="warn">$4.80/gal avg (EIA 2026)</td><td>+49% since conflict began; backbone of logistics, construction, agriculture; 10% diesel rise = +0.1pp CPI (RSM Economics)</td></tr>
+      <tr><td class="col-head">EU Natural Gas (TTF)</td><td>~€32/MWh</td><td class="up">€62+/MWh</td><td class="up">~€62/MWh</td><td class="up">€70-90/MWh</td><td class="warn">€55-75/MWh</td><td class="warn">€45-60/MWh</td><td>EU storage at 30% (post-harsh winter); ECB postponed rate cuts Mar 19; Germany and Italy at recession risk; surcharges +30%</td></tr>
+      <tr><td class="col-head">LNG (Liquefied Natural Gas)</td><td>Baseline</td><td class="up">+140% Asia spot</td><td class="up">Severely elevated</td><td class="up">Persistently high</td><td class="warn">Easing if Qatar restarts</td><td class="warn">Elevated (3-5yr repair)</td><td>Qatar Ras Laffan hit Mar 18 — 17% LNG capacity lost; repair takes 3-5 years; Japan, South Korea, Singapore, Taiwan most exposed</td></tr>
+      <tr><td class="col-head">Fertilizer (global)</td><td>Baseline</td><td class="up">+65%</td><td class="up">+65%</td><td class="up">+70-80%</td><td class="warn">+50-65%</td><td class="warn">+30-50%</td><td>33% of world fertilizer transits Hormuz; food inflation 6-12 months out; Philippines, Pakistan, Bangladesh in acute stress (ADB)</td></tr>
+      <tr><td class="col-head">ECB Lending Rate</td><td>2.5%</td><td class="warn">On hold (Mar 19)</td><td class="warn">On hold</td><td class="up">+100 bps hike if conflict persists</td><td class="up">Elevated</td><td class="neutral">Gradual easing</td><td>ECB
+ raised inflation forecast, cut GDP projections; Fed may cut to protect 
+labor market — rare policy divergence between US and Europe</td></tr>
+      <tr><td class="col-head">Shipping and Freight</td><td>Baseline</td><td class="up">+40-55%</td><td class="up">+40%</td><td class="up">+40-60%</td><td class="warn">+30-45%</td><td class="warn">+15-30%</td><td>Supply
+ chain disruptions "worse than pandemic" per TIME/ADB report; tanker 
+backlog outside Hormuz = 2-4 week delivery delays globally</td></tr>
+    </tbody>
+  </table>
+  <p class="src-note">Sources: EIA Short-Term Energy Outlook (April 
+2026); AAA Fuel Gauge Report (April 6-8, 2026); Trading Economics (April
+ 8, 2026); Fortune (April 8, 2026); Goldman Sachs ECS Research; IEA 
+Emergency Report; Chatham House (March 2026); CFR/WTO (March 2026); 
+Asian Development Bank (March 2026)</p>
+
+  <div class="section-hd">The 2026 Energy Crisis — What It Means</div>
+  <div class="chart-wrap" style="padding:20px 24px;">
+    <div class="chart-title">2026 Global Energy Crisis: Scope and Scale</div>
+    <div class="chart-sub">The IEA has characterized the 2026 Hormuz 
+closure as the "largest supply disruption in the history of the global 
+oil market" — exceeding the 1973 oil embargo, the 1979 Iranian 
+Revolution, and the 2022 Russia-Ukraine crisis in physical scale. 
+Source: IEA, Wikipedia 2026 Iran Fuel Crisis, EIA Q1 2026 Quarterly 
+Review.</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:8px;">
+      <div style="background:var(--warning-bg);border-radius:6px;padding:14px;border-left:3px solid var(--accent);">
+        <div style="font-weight:700;font-size:12px;color:var(--accent);margin-bottom:5px;">Oil Supply Disrupted</div>
+        <div style="font-family:'Oswald',sans-serif;font-size:28px;color:var(--accent);">20M bpd</div>
+        <div style="font-size:11px;color:var(--text-light);margin-top:4px;">Gulf
+ producers including Iraq and Kuwait curtailed output by 10M bpd by 
+March 12 as local storage filled up. QatarEnergy declared Force Majeure 
+on all LNG exports. Total Hormuz oil and LNG trade — now effectively 
+halted.</div>
+      </div>
+      <div style="background:#FFF8E1;border-radius:6px;padding:14px;border-left:3px solid var(--accent2);">
+        <div style="font-weight:700;font-size:12px;color:var(--accent2);margin-bottom:5px;">Food Security Emergency</div>
+        <div style="font-family:'Oswald',sans-serif;font-size:28px;color:var(--accent2);">70%</div>
+        <div style="font-size:11px;color:var(--text-light);margin-top:4px;">70%
+ of GCC food imports disrupted by mid-March. Gulf states rely on Hormuz 
+for 80%+ of caloric intake. Kuwait and Qatar drinking water threatened 
+as Iranian strikes hit desalination plants. Consumer prices in Gulf 
+spiked 40-120% (Wikipedia, 2026 fuel crisis).</div>
+      </div>
+      <div style="background:var(--info-bg);border-radius:6px;padding:14px;border-left:3px solid var(--blue);">
+        <div style="font-weight:700;font-size:12px;color:var(--blue);margin-bottom:5px;">Semiconductor Risk</div>
+        <div style="font-family:'Oswald',sans-serif;font-size:28px;color:var(--blue);">40%</div>
+        <div style="font-size:11px;color:var(--text-light);margin-top:4px;">Qatar
+ produces ~40% of world's helium, used in semiconductor manufacturing. 
+Qatar halted helium production when Ras Laffan was struck March 18. 
+Taiwan, South Korea, Japan chip industries face supply squeeze. 
+Petrochemical feedstock shortages forcing output cuts across Asia (TIME,
+ March 2026).</div>
+      </div>
+      <div style="background:#F3E5F5;border-radius:6px;padding:14px;border-left:3px solid #7B1FA2;">
+        <div style="font-weight:700;font-size:12px;color:#7B1FA2;margin-bottom:5px;">Europe Deindustrialisation</div>
+        <div style="font-family:'Oswald',sans-serif;font-size:28px;color:#7B1FA2;">+30%</div>
+        <div style="font-size:11px;color:var(--text-light);margin-top:4px;">Chemical
+ and steel manufacturers imposed surcharges up to 30% to offset surging 
+electricity and feedstock costs. ECB warned of potential permanent 
+deindustrialisation in some sectors. UK inflation expected to breach 5% 
+in 2026. EU Commission advised member states to fill gas storage early 
+(March 26, 2026).</div>
+      </div>
+    </div>
+    <p style="font-size:10px;color:var(--text-muted);margin-top:12px;">Sources:
+ IEA Emergency Report (March 2026); Wikipedia "2026 Iran War Fuel 
+Crisis" (April 2026); EIA Quarterly Petroleum Market Review Q1 2026; 
+TIME Magazine (March 2026); Asian Development Bank (March 2026)</p>
+  </div>
+
+  <div class="section-hd">How Shocks Cascade — The Economic Chain Reaction</div>
+  <div class="chart-wrap" style="overflow-x:auto;">
+    <div class="chart-title">From Hormuz Closure to Global Recession — Step-by-Step Transmission</div>
+    <div class="chart-sub">Source: World Economic Forum, "The Global 
+Price Tag of Conflict in the Middle East," March 2026. Each arrow 
+represents a direct causal link. All six steps happen simultaneously but
+ with different time lags — oil shock is immediate, recession risk 
+builds over months.</div>
+    <svg viewBox="0 0 900 200" style="width:100%;max-width:900px;display:block;margin:0 auto;">
+      <defs><marker id="arr" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#1565C0"></polygon></marker></defs>
+      <g transform="translate(5,50)">
+        <rect x="0" y="0" width="118" height="52" rx="5" fill="#1565C0"></rect>
+        <text x="59" y="18" text-anchor="middle" fill="white" font-size="10" font-weight="600">HORMUZ CLOSURE</text>
+        <text x="59" y="32" text-anchor="middle" fill="#90CAF9" font-size="9">20 million bpd lost</text>
+        <text x="59" y="46" text-anchor="middle" fill="#F9A825" font-size="8">Strait of Hormuz blocked</text>
+      </g>
+      <line x1="123" y1="76" x2="150" y2="76" stroke="#1565C0" stroke-width="2" marker-end="url(#arr)"></line>
+      <g transform="translate(150,50)">
+        <rect x="0" y="0" width="110" height="52" rx="5" fill="#C62828"></rect>
+        <text x="55" y="18" text-anchor="middle" fill="white" font-size="10" font-weight="600">OIL PRICE SHOCK</text>
+        <text x="55" y="32" text-anchor="middle" fill="#FFCDD2" font-size="9">Brent +40% to $106</text>
+        <text x="55" y="46" text-anchor="middle" fill="#F9A825" font-size="8">Gas: $3.13 to $4.22/gal</text>
+      </g>
+      <line x1="260" y1="76" x2="288" y2="76" stroke="#1565C0" stroke-width="2" marker-end="url(#arr)"></line>
+      <g transform="translate(288,50)">
+        <rect x="0" y="0" width="110" height="52" rx="5" fill="#E65100"></rect>
+        <text x="55" y="18" text-anchor="middle" fill="white" font-size="10" font-weight="600">INFLATION SURGE</text>
+        <text x="55" y="32" text-anchor="middle" fill="#FFE0B2" font-size="9">Global: 7.7% peak</text>
+        <text x="55" y="46" text-anchor="middle" fill="#F9A825" font-size="8">Food and energy costs spike</text>
+      </g>
+      <line x1="398" y1="76" x2="426" y2="76" stroke="#1565C0" stroke-width="2" marker-end="url(#arr)"></line>
+      <g transform="translate(426,50)">
+        <rect x="0" y="0" width="110" height="52" rx="5" fill="#4527A0"></rect>
+        <text x="55" y="18" text-anchor="middle" fill="white" font-size="10" font-weight="600">RATE RESPONSE</text>
+        <text x="55" y="32" text-anchor="middle" fill="#D1C4E9" font-size="9">ECB +100 bps hike</text>
+        <text x="55" y="46" text-anchor="middle" fill="#F9A825" font-size="8">Bank of England same</text>
+      </g>
+      <line x1="536" y1="76" x2="564" y2="76" stroke="#1565C0" stroke-width="2" marker-end="url(#arr)"></line>
+      <g transform="translate(564,50)">
+        <rect x="0" y="0" width="110" height="52" rx="5" fill="#1B5E20"></rect>
+        <text x="55" y="18" text-anchor="middle" fill="white" font-size="10" font-weight="600">CREDIT CRUNCH</text>
+        <text x="55" y="32" text-anchor="middle" fill="#C8E6C9" font-size="9">Investment freezes</text>
+        <text x="55" y="46" text-anchor="middle" fill="#F9A825" font-size="8">FDI down 15-35%</text>
+      </g>
+      <line x1="674" y1="76" x2="702" y2="76" stroke="#1565C0" stroke-width="2" marker-end="url(#arr)"></line>
+      <g transform="translate(702,50)">
+        <rect x="0" y="0" width="118" height="52" rx="5" fill="#37474F"></rect>
+        <text x="59" y="18" text-anchor="middle" fill="white" font-size="10" font-weight="600">RECESSION RISK</text>
+        <text x="59" y="32" text-anchor="middle" fill="#CFD8DC" font-size="9">World GDP 1.4% in 2026</text>
+        <text x="59" y="46" text-anchor="middle" fill="#F9A825" font-size="8">50% US recession odds</text>
+      </g>
+      <text x="5" y="125" fill="#546E7A" font-size="9">Step 1 — Immediate</text>
+      <text x="150" y="125" fill="#546E7A" font-size="9">Step 2 — Days 1-5</text>
+      <text x="288" y="125" fill="#546E7A" font-size="9">Step 3 — Weeks 2-4</text>
+      <text x="426" y="125" fill="#546E7A" font-size="9">Step 4 — Weeks 4-8</text>
+      <text x="564" y="125" fill="#546E7A" font-size="9">Step 5 — Month 2-3</text>
+      <text x="702" y="125" fill="#546E7A" font-size="9">Step 6 — Month 3-6</text>
+    </svg>
+  </div>
+
+  <div class="section-hd">GDP Growth Projections — Q2, Q3, Q4 2026 by Country</div>
+  <div class="acronym-bar"><strong>Reading this chart:</strong> GDP = 
+Gross Domestic Product (total size of an economy) | Baseline = if 
+conflict ends quickly (under 6 weeks) | Adverse = conflict lasts 6-10 
+weeks | Severely Adverse = 10+ weeks | Negative values mean economic 
+contraction | Q2 = Apr-Jun | Q3 = Jul-Sep | Q4 = Oct-Dec 2026</div>
+  <div class="chart-wrap">
+    <div class="chart-title">Projected Annual GDP Growth Rate — Major Economies Under Three Conflict Scenarios (%)</div>
+    <div class="chart-sub">Sources: Goldman Sachs Global Economics 
+(March 27, 2026); Oxford Economics Iran Conflict Tracker; Capital 
+Economics; Dallas Federal Reserve Model (March 20, 2026). Figures 
+represent projected full-year 2026 GDP growth under each scenario.</div>
+    <canvas id="gdpChart" height="485" style="display: block; box-sizing: border-box; height: 388px; width: 1226px;" width="1533"></canvas>
+    <div class="chart-explainer"><strong>What this means:</strong> In 
+the baseline (short conflict) scenario, most economies slow but avoid 
+recession. In the adverse scenario (6-10 weeks of Hormuz disruption), 
+Japan, South Korea and GCC economies risk outright contraction. In the 
+severely adverse scenario (10+ weeks), the world economy as a whole 
+shrinks — a rare event last seen in 2009 and 2020. The US drops from 
+2.4% to 1.1% GDP growth, and GCC (Gulf Cooperation Council) economies 
+fall into recession at -1.5%.</div>
+  </div>
+  <p class="src-note">Sources: Oxford Economics Iran Conflict Tracker 
+(March 31, 2026); Goldman Sachs ECS Research; Capital Economics; Dallas 
+Federal Reserve Model (March 20, 2026); IMF World Economic Outlook</p>
+
+</div>
+</div>
+
+<!-- ═══════════ TAB: US ECONOMY ═══════════ -->
+<div id="tab-usa" class="tab-panel">
+<div class="page-wrap">
+
+  <div class="section-hd">Comprehensive US Economic Impact Analysis</div>
+  <div class="acronym-bar"><strong>Key terms in this section:</strong> 
+GDP = Gross Domestic Product | pp = percentage points | bps = basis 
+points (1 bps = 0.01%) | PCE = Personal Consumption Expenditures (the 
+Federal Reserve's preferred inflation measure) | Fed = US Federal 
+Reserve (US central bank) | CAPEX = Capital Expenditures (business 
+investment in equipment and infrastructure) | FDI = Foreign Direct 
+Investment | BLS = Bureau of Labor Statistics | ISM = Institute for 
+Supply Management | M&amp;A = Mergers and Acquisitions</div>
+
+  <div class="expert-quote">
+    <div class="eq-text">"If oil prices stay kind of where they are 
+through Memorial Day, certainly through the end of the second quarter, 
+that will push us into recession. The negative consequences of higher 
+oil prices happen first and fast."</div>
+    <div class="eq-attr">— <span>Mark Zandi, Chief Economist, Moody's Analytics</span>, CNBC, March 25, 2026</div>
+  </div>
+
+  <div class="kpi-grid">
+    <div class="kpi-card red"><div class="kpi-label">Recession Probability</div><div class="kpi-val red">~50%</div><div class="kpi-sub">Moody's Zandi (March 2026)</div><div class="kpi-src">Source: CNBC, March 25, 2026</div></div>
+    <div class="kpi-card"><div class="kpi-label">US GDP Growth 2026</div><div class="kpi-val">2.1%</div><div class="kpi-sub">Goldman Sachs baseline, Q4-to-Q4 comparison</div><div class="kpi-src">Source: Goldman Sachs, March 27, 2026</div></div>
+    <div class="kpi-card red"><div class="kpi-label">GDP — Severely Adverse</div><div class="kpi-val red">1.8%</div><div class="kpi-sub">If Hormuz closed 10+ weeks</div><div class="kpi-src">Source: Goldman Sachs</div></div>
+    <div class="kpi-card orange"><div class="kpi-label">Q2 GDP Hit (annualized)</div><div class="kpi-val orange">-2.9pp</div><div class="kpi-sub">If Hormuz fully closed in Q2 (April-June)</div><div class="kpi-src">Source: Dallas Federal Reserve, March 20</div></div>
+    <div class="kpi-card red"><div class="kpi-label">Jobs Lost — Full Year 2025</div><div class="kpi-val red">116K</div><div class="kpi-sub">Dangerously low; US economy lost 92,000 jobs in February 2026 alone</div><div class="kpi-src">Source: Bureau of Labor Statistics / CNBC</div></div>
+    <div class="kpi-card"><div class="kpi-label">Unemployment Rate (Now)</div><div class="kpi-val">4.4%</div><div class="kpi-sub">Rising; Q3 (Jul-Sep) projected at 4.6% (Goldman Sachs)</div><div class="kpi-src">Source: BLS / Goldman Sachs</div></div>
+    <div class="kpi-card red"><div class="kpi-label">Jobs Suppressed per Month</div><div class="kpi-val red">10K+</div><div class="kpi-sub">Oil shock impact on payroll growth through end of 2026</div><div class="kpi-src">Source: Goldman Sachs, March 26, 2026</div></div>
+    <div class="kpi-card orange"><div class="kpi-label">Gasoline Price Spike</div><div class="kpi-val orange">+35%</div><div class="kpi-sub">$3.13 to $4.22 per gallon in 30 days; adds ~$1,200/yr per household</div><div class="kpi-src">Source: AAA / Fortune</div></div>
+  </div>
+
+  <div class="section-hd">The US Economic Cycle — From Hormuz Closure to Recession Risk</div>
+  <div class="cycle-wrap" style="padding:28px;">
+    <div class="chart-title" style="margin-bottom:6px;">How One Event Triggers the Next — Click Any Step to Learn More</div>
+    <div class="chart-sub" style="margin-bottom:20px;">Each numbered 
+node represents a cause-and-effect step. The arrows show the direction 
+of economic transmission — starting from the Hormuz closure and ending 
+at GDP contraction. Click or tap any node to see a detailed explanation 
+below the diagram. Source: Goldman Sachs, Oxford Economics, Dallas Fed, 
+Moody's (2026).</div>
+
+    <!-- CYCLE SVG DIAGRAM -->
+    <div style="overflow-x:auto;">
+    <svg id="cycleSvg" viewBox="0 0 760 420" style="width:100%;max-width:760px;display:block;margin:0 auto;cursor:pointer;" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <marker id="cArr" markerWidth="9" markerHeight="7" refX="9" refY="3.5" orient="auto">
+          <polygon points="0 0, 9 3.5, 0 7" fill="#94A3B8"></polygon>
+        </marker>
+        <marker id="cArrHi" markerWidth="9" markerHeight="7" refX="9" refY="3.5" orient="auto">
+          <polygon points="0 0, 9 3.5, 0 7" fill="#1565C0"></polygon>
+        </marker>
+        <filter id="glow">
+          <feDropShadow dx="0" dy="0" stdDeviation="4" flood-color="#1565C0" flood-opacity="0.5"></feDropShadow>
+        </filter>
+      </defs>
+
+      <!-- CONNECTING ARROWS — drawn before nodes so nodes sit on top -->
+      <!-- 1→2 -->
+      <line x1="168" y1="70" x2="232" y2="70" stroke="#94A3B8" stroke-width="1.5" marker-end="url(#cArr)"></line>
+      <!-- 2→3 -->
+      <line x1="328" y1="70" x2="392" y2="70" stroke="#94A3B8" stroke-width="1.5" marker-end="url(#cArr)"></line>
+      <!-- 3→4 -->
+      <line x1="488" y1="70" x2="552" y2="70" stroke="#94A3B8" stroke-width="1.5" marker-end="url(#cArr)"></line>
+      <!-- 4 down to row 2 -->
+      <line x1="620" y1="118" x2="620" y2="230" stroke="#94A3B8" stroke-width="1.5" marker-end="url(#cArr)"></line>
+      <!-- 5←6 (row 2, right to left) -->
+      <line x1="528" y1="270" x2="468" y2="270" stroke="#94A3B8" stroke-width="1.5" marker-end="url(#cArr)"></line>
+      <!-- 6←7 -->
+      <line x1="368" y1="270" x2="308" y2="270" stroke="#94A3B8" stroke-width="1.5" marker-end="url(#cArr)"></line>
+      <!-- 7←8 -->
+      <line x1="208" y1="270" x2="148" y2="270" stroke="#94A3B8" stroke-width="1.5" marker-end="url(#cArr)"></line>
+      <!-- 8 down to row 3 -->
+      <line x1="80" y1="318" x2="80" y2="350" stroke="#94A3B8" stroke-width="1.5" marker-end="url(#cArr)"></line>
+      <!-- final node bottom -->
+
+      <!-- NODE FUNCTION: cx,cy = centre; r = radius -->
+      <!-- Row 1: nodes 1-4 -->
+      <!-- Node 1: Oil Shock -->
+      <circle class="cycle-node" data-step="1" cx="80" cy="70" r="52" fill="#1B2B3B" stroke="#1565C0" stroke-width="2.5" style="cursor: pointer;"></circle>
+      <text x="80" y="58" text-anchor="middle" fill="#90CAF9" font-size="9" font-family="IBM Plex Mono,monospace" letter-spacing="1">STEP 1</text>
+      <text x="80" y="72" text-anchor="middle" fill="white" font-size="11" font-weight="700" font-family="IBM Plex Sans,sans-serif">Oil Price</text>
+      <text x="80" y="85" text-anchor="middle" fill="white" font-size="11" font-weight="700" font-family="IBM Plex Sans,sans-serif">Shock</text>
+      <text x="80" y="100" text-anchor="middle" fill="#F9A825" font-size="9" font-family="IBM Plex Mono,monospace">$106/bbl</text>
+
+      <!-- Node 2: Household Spending Falls -->
+      <circle class="cycle-node" data-step="2" cx="280" cy="70" r="52" fill="#1B2B3B" stroke="#F57C00" stroke-width="2.5" style="cursor: pointer;"></circle>
+      <text x="280" y="55" text-anchor="middle" fill="#FFCC80" font-size="9" font-family="IBM Plex Mono,monospace" letter-spacing="1">STEP 2</text>
+      <text x="280" y="69" text-anchor="middle" fill="white" font-size="11" font-weight="700" font-family="IBM Plex Sans,sans-serif">Household</text>
+      <text x="280" y="82" text-anchor="middle" fill="white" font-size="11" font-weight="700" font-family="IBM Plex Sans,sans-serif">Spending</text>
+      <text x="280" y="95" text-anchor="middle" fill="white" font-size="11" font-weight="700" font-family="IBM Plex Sans,sans-serif">Falls</text>
+      <text x="280" y="110" text-anchor="middle" fill="#F9A825" font-size="9" font-family="IBM Plex Mono,monospace">-$1,200/yr</text>
+
+      <!-- Node 3: Inflation Reignites -->
+      <circle class="cycle-node" data-step="3" cx="440" cy="70" r="52" fill="#1B2B3B" stroke="#D32F2F" stroke-width="2.5" style="cursor: pointer;"></circle>
+      <text x="440" y="55" text-anchor="middle" fill="#FFCDD2" font-size="9" font-family="IBM Plex Mono,monospace" letter-spacing="1">STEP 3</text>
+      <text x="440" y="69" text-anchor="middle" fill="white" font-size="11" font-weight="700" font-family="IBM Plex Sans,sans-serif">Inflation</text>
+      <text x="440" y="82" text-anchor="middle" fill="white" font-size="11" font-weight="700" font-family="IBM Plex Sans,sans-serif">Reignites</text>
+      <text x="440" y="100" text-anchor="middle" fill="#F9A825" font-size="9" font-family="IBM Plex Mono,monospace">CPI rises again</text>
+
+      <!-- Node 4: Borrowing Costs Rise -->
+      <circle class="cycle-node" data-step="4" cx="620" cy="70" r="52" fill="#1B2B3B" stroke="#7B1FA2" stroke-width="2.5" style="cursor: pointer;"></circle>
+      <text x="620" y="55" text-anchor="middle" fill="#E1BEE7" font-size="9" font-family="IBM Plex Mono,monospace" letter-spacing="1">STEP 4</text>
+      <text x="620" y="69" text-anchor="middle" fill="white" font-size="11" font-weight="700" font-family="IBM Plex Sans,sans-serif">Borrowing</text>
+      <text x="620" y="82" text-anchor="middle" fill="white" font-size="11" font-weight="700" font-family="IBM Plex Sans,sans-serif">Costs Rise</text>
+      <text x="620" y="100" text-anchor="middle" fill="#F9A825" font-size="9" font-family="IBM Plex Mono,monospace">10yr at 4.82%</text>
+
+      <!-- Row 2: nodes 5-8, right to left -->
+      <!-- Node 5: Investment Freezes -->
+      <circle class="cycle-node" data-step="5" cx="620" cy="270" r="52" fill="#1B2B3B" stroke="#2E7D32" stroke-width="2.5" style="cursor: pointer;"></circle>
+      <text x="620" y="255" text-anchor="middle" fill="#C8E6C9" font-size="9" font-family="IBM Plex Mono,monospace" letter-spacing="1">STEP 5</text>
+      <text x="620" y="269" text-anchor="middle" fill="white" font-size="11" font-weight="700" font-family="IBM Plex Sans,sans-serif">Business</text>
+      <text x="620" y="282" text-anchor="middle" fill="white" font-size="11" font-weight="700" font-family="IBM Plex Sans,sans-serif">Investment</text>
+      <text x="620" y="295" text-anchor="middle" fill="white" font-size="11" font-weight="700" font-family="IBM Plex Sans,sans-serif">Freezes</text>
+      <text x="620" y="310" text-anchor="middle" fill="#F9A825" font-size="9" font-family="IBM Plex Mono,monospace">FDI -15-35%</text>
+
+      <!-- Node 6: Jobs Lost -->
+      <circle class="cycle-node" data-step="6" cx="440" cy="270" r="52" fill="#1B2B3B" stroke="#C62828" stroke-width="2.5" style="cursor: pointer;"></circle>
+      <text x="440" y="255" text-anchor="middle" fill="#FFCDD2" font-size="9" font-family="IBM Plex Mono,monospace" letter-spacing="1">STEP 6</text>
+      <text x="440" y="269" text-anchor="middle" fill="white" font-size="11" font-weight="700" font-family="IBM Plex Sans,sans-serif">Jobs Are</text>
+      <text x="440" y="282" text-anchor="middle" fill="white" font-size="11" font-weight="700" font-family="IBM Plex Sans,sans-serif">Lost</text>
+      <text x="440" y="300" text-anchor="middle" fill="#F9A825" font-size="9" font-family="IBM Plex Mono,monospace">10K/month</text>
+
+      <!-- Node 7: Government Deficit Widens -->
+      <circle class="cycle-node" data-step="7" cx="260" cy="270" r="52" fill="#1B2B3B" stroke="#283593" stroke-width="2.5" style="cursor: pointer;"></circle>
+      <text x="260" y="252" text-anchor="middle" fill="#C5CAE9" font-size="9" font-family="IBM Plex Mono,monospace" letter-spacing="1">STEP 7</text>
+      <text x="260" y="266" text-anchor="middle" fill="white" font-size="11" font-weight="700" font-family="IBM Plex Sans,sans-serif">Government</text>
+      <text x="260" y="279" text-anchor="middle" fill="white" font-size="11" font-weight="700" font-family="IBM Plex Sans,sans-serif">Deficit</text>
+      <text x="260" y="292" text-anchor="middle" fill="white" font-size="11" font-weight="700" font-family="IBM Plex Sans,sans-serif">Widens</text>
+      <text x="260" y="308" text-anchor="middle" fill="#F9A825" font-size="9" font-family="IBM Plex Mono,monospace">$2.2T deficit</text>
+
+      <!-- Node 8: GDP Contracts -->
+      <circle class="cycle-node" data-step="8" cx="80" cy="270" r="52" fill="#3D0000" stroke="#D32F2F" stroke-width="3" style="cursor: pointer;"></circle>
+      <text x="80" y="252" text-anchor="middle" fill="#FFCDD2" font-size="9" font-family="IBM Plex Mono,monospace" letter-spacing="1">STEP 8</text>
+      <text x="80" y="266" text-anchor="middle" fill="white" font-size="12" font-weight="700" font-family="IBM Plex Sans,sans-serif">GDP</text>
+      <text x="80" y="280" text-anchor="middle" fill="white" font-size="12" font-weight="700" font-family="IBM Plex Sans,sans-serif">Contracts</text>
+      <text x="80" y="298" text-anchor="middle" fill="#FF8A80" font-size="9" font-family="IBM Plex Mono,monospace">Recession risk</text>
+      <text x="80" y="310" text-anchor="middle" fill="#F9A825" font-size="9" font-family="IBM Plex Mono,monospace">50% — Moody's</text>
+
+      <!-- Bottom arrow back up from 8 — feedback loop hint -->
+      <path d="M 30 290 Q 30 380 380 395 Q 700 380 700 290" fill="none" stroke="#37474F" stroke-width="1.5" stroke-dasharray="5 4" marker-end="url(#cArr)"></path>
+      <text x="380" y="408" text-anchor="middle" fill="#546E7A" font-size="9" font-family="IBM Plex Mono,monospace">Loop reinforces — recession further suppresses tax revenue and consumer spending</text>
+
+      <!-- Click hint -->
+      <text x="380" y="178" text-anchor="middle" fill="#64B5F6" font-size="11" font-family="IBM Plex Sans,sans-serif" font-style="italic">Click any circle to read the explanation below</text>
+    </svg>
+    </div>
+
+    <!-- EXPLANATION PANEL — populated on click -->
+    <div id="cycleExplain" style="margin-top:18px;display:none;">
+      <div id="cycleExplainInner" style="background:var(--info-bg);border-left:4px solid var(--blue);border-radius:0 7px 7px 0;padding:16px 20px;">
+        <div id="cycleExplainStep" style="font-family:'Oswald',sans-serif;font-size:13px;letter-spacing:2px;color:var(--blue);margin-bottom:6px;"></div>
+        <div id="cycleExplainTitle" style="font-family:'Merriweather',serif;font-size:16px;font-weight:700;color:var(--navy);margin-bottom:8px;"></div>
+        <div id="cycleExplainBody" style="font-size:13px;color:var(--text-light);line-height:1.8;"></div>
+        <div id="cycleExplainSrc" style="font-size:10px;color:var(--text-muted);margin-top:8px;font-style:italic;"></div>
+      </div>
+    </div>
+
+    <!-- Step legend strip -->
+    <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:16px;justify-content:center;">
+      <span style="font-size:10px;color:var(--text-muted);font-family:'IBM Plex Mono',monospace;padding:3px 8px;border-radius:3px;background:var(--section-bg);">Step 1: Oil Shock</span>
+      <span style="font-size:10px;color:var(--text-muted);font-family:'IBM Plex Mono',monospace;padding:3px 8px;border-radius:3px;background:var(--section-bg);">Step 2: Household Spending Falls</span>
+      <span style="font-size:10px;color:var(--text-muted);font-family:'IBM Plex Mono',monospace;padding:3px 8px;border-radius:3px;background:var(--section-bg);">Step 3: Inflation Reignites</span>
+      <span style="font-size:10px;color:var(--text-muted);font-family:'IBM Plex Mono',monospace;padding:3px 8px;border-radius:3px;background:var(--section-bg);">Step 4: Borrowing Costs Rise</span>
+      <span style="font-size:10px;color:var(--text-muted);font-family:'IBM Plex Mono',monospace;padding:3px 8px;border-radius:3px;background:var(--section-bg);">Step 5: Investment Freezes</span>
+      <span style="font-size:10px;color:var(--text-muted);font-family:'IBM Plex Mono',monospace;padding:3px 8px;border-radius:3px;background:var(--section-bg);">Step 6: Jobs Are Lost</span>
+      <span style="font-size:10px;color:var(--text-muted);font-family:'IBM Plex Mono',monospace;padding:3px 8px;border-radius:3px;background:var(--section-bg);">Step 7: Government Deficit Widens</span>
+      <span style="font-size:10px;color:var(--text-muted);font-family:'IBM Plex Mono',monospace;padding:3px 8px;border-radius:3px;background:var(--section-bg);">Step 8: GDP Contracts</span>
+    </div>
+    <p style="font-size:10px;color:var(--text-muted);margin-top:10px;text-align:center;">Source:
+ Goldman Sachs ECS Research (March 2026); Oxford Economics Iran Conflict
+ Tracker; Dallas Federal Reserve; Moody's Analytics; Harvard Kennedy 
+School (March 27, 2026)</p>
+  </div>
+
+  <div class="section-hd">Short-Term vs. Long-Term US Economic Effects</div>
+  <div class="two-col">
+    <table class="data-table">
+      <thead><tr><th colspan="2">Short-Term Effects (0 to 6 Months)</th></tr><tr><th>Sector or Indicator</th><th>Impact</th></tr></thead>
+      <tbody>
+        <tr><td class="col-head">Primary Energy Sector</td><td class="warn">Immediate cost push; US shale benefits from high prices; energy sector jobs limited</td></tr>
+        <tr><td class="col-head">Manufacturing</td><td class="up">Input cost surge +30-40%; output slowdown beginning; order cancellations rising</td></tr>
+        <tr><td class="col-head">Transportation and Logistics</td><td class="up">Freight costs +40-60%; airlines reducing routes; truck operating costs soaring</td></tr>
+        <tr><td class="col-head">Household Spending</td><td class="up">$1,200+ per year extra energy cost per household; retail and discretionary spending declining 4-8%</td></tr>
+        <tr><td class="col-head">Federal Reserve Policy</td><td class="warn">Federal Reserve holding on cuts; may cut if labor market deteriorates sharply</td></tr>
+        <tr><td class="col-head">Government Deficit</td><td class="up">Defense spending rising; strategic petroleum reserve cost $30 billion+</td></tr>
+        <tr><td class="col-head">Labor Market</td><td class="up">92,000 jobs lost in February 2026; 10,000 per month suppressed (Goldman Sachs)</td></tr>
+        <tr><td class="col-head">Tertiary Services</td><td class="up">Restaurants, hotels, retail — hardest hit sectors (Goldman Sachs, March 2026)</td></tr>
+      </tbody>
+    </table>
+    <table class="data-table">
+      <thead><tr><th colspan="2">Long-Term Effects (6 Months to 2 Years)</th></tr><tr><th>Sector or Indicator</th><th>Impact</th></tr></thead>
+      <tbody>
+        <tr><td class="col-head">Manufacturing Reshoring</td><td class="warn">Supply chain review accelerates; near-shoring and friend-shoring investments</td></tr>
+        <tr><td class="col-head">Energy Investment</td><td class="up">Capital expenditure in shale limited despite high prices (Goldman Sachs)</td></tr>
+        <tr><td class="col-head">Fiscal Position</td><td class="up">Deficit widening; debt servicing cost rising at 4.82% Treasury yield</td></tr>
+        <tr><td class="col-head">Monetary Policy</td><td class="warn">Federal Reserve likely cuts Q3-Q4 as unemployment rises; dollar softens gradually</td></tr>
+        <tr><td class="col-head">Structural Unemployment</td><td class="up">Job losses in AI-disrupted and energy-intensive sectors may be permanent</td></tr>
+        <tr><td class="col-head">Technology Sector</td><td class="warn">Indirect impact through weaker consumer demand; AI investment bubble concerns persist</td></tr>
+        <tr><td class="col-head">Agricultural Exports</td><td class="up">Fertilizer +65% = higher farm costs; crop selection shifting toward lower-cost crops</td></tr>
+        <tr><td class="col-head">Geopolitical Credibility</td><td class="warn">Allied economies bearing energy cost burden; coalition politics complicated (WEF)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section-hd">Interest Rates, Lending, Fiscal Policy and the Money Multiplier</div>
+  <div class="acronym-bar"><strong>Terms:</strong> bps = basis points (1
+ bps = 0.01%; so 100 bps = 1%) | Federal Reserve = US central bank | 
+Treasury yield = interest rate on US government bonds | Money multiplier
+ = how each dollar injected into the economy creates additional economic
+ activity through lending | PCE = Personal Consumption Expenditures</div>
+  <table class="data-table">
+    <thead><tr><th>Financial Mechanism</th><th>Pre-Conflict Level</th><th>Now (Q1 2026)</th><th>Q2-Q3 2026 Projection</th><th>Downstream Impact on Economy</th></tr></thead>
+    <tbody>
+      <tr><td class="col-head">Federal Funds Rate</td><td>4.25-4.50%</td><td class="warn">On hold</td><td>1-2 cuts if unemployment rises sharply</td><td>Lower borrowing costs possible, but inflation limits room; conflicting signals</td></tr>
+      <tr><td class="col-head">US 10-Year Treasury Yield</td><td>~4.4%</td><td class="up">4.82%</td><td>4.75-5.1% (inflation risk premium)</td><td>Higher mortgage rates, business borrowing costs; housing market further squeezed</td></tr>
+      <tr><td class="col-head">Bank Lending Standards</td><td>Tight</td><td class="up">Tightening further</td><td>Credit growth slows -8 to -12%</td><td>Reduced business investment; small business squeeze; fewer new hires</td></tr>
+      <tr><td class="col-head">Money Multiplier Effect</td><td>Normal (approx. 2.5x)</td><td class="up">Contracting</td><td>Multiplier dampened by uncertainty</td><td>Every $1 reduction in consumer spending removes $1.5-2.5 in GDP through multiplier chain</td></tr>
+      <tr><td class="col-head">30-Year Mortgage Rate</td><td>~6.5%</td><td class="up">6.9%+</td><td>7.0-7.4% if 10-yr stays elevated</td><td>Housing market further slows; construction employment drops; household wealth effect weakens</td></tr>
+      <tr><td class="col-head">Corporate Bond Spreads</td><td>Tight</td><td class="up">Widening</td><td>+50-100 basis points for high-yield</td><td>Higher cost of capital; mergers and acquisitions freeze; capital expenditure pullback</td></tr>
+      <tr><td class="col-head">Federal Deficit (FY2026)</td><td>~$1.8 trillion projected</td><td class="up">Rising toward $2.0-2.2 trillion</td><td>Defense and reserve releases add $50-100 billion</td><td>Crowding out private investment; future tax burden; reduced room for fiscal stimulus</td></tr>
+      <tr><td class="col-head">Consumer Credit Stress</td><td>Elevated</td><td class="up">Delinquencies rising</td><td>Default rates moving up in Q3</td><td>Banks restrict new lending; lower household spending multiplier; bank provisioning rises</td></tr>
+    </tbody>
+  </table>
+  <p class="src-note">Source: Goldman Sachs ECS Research (March 2026); 
+Oxford Economics Iran Conflict Tracker; Federal Reserve H.15 Statistical
+ Release; Harvard Kennedy School FAS Symposium (March 27, 2026)</p>
+
+  <div class="section-hd">US Unemployment — Historical Trend and Projections</div>
+  <div class="chart-wrap">
+    <div class="chart-title">US Unemployment Rate — 2022 to End of 2026 (Actual and Projected)</div>
+    <div class="chart-sub">Shaded area begins at February 28, 2026 
+(conflict start). The solid blue line shows actual unemployment data. 
+Dotted lines show three projected scenarios from Goldman Sachs and 
+Moody's Analytics. The unemployment rate has risen from a low of 3.4% in
+ 2023 to 4.4% today before the conflict added further pressure.</div>
+    <canvas id="unempChart" height="95"></canvas>
+    <div class="chart-explainer"><strong>What this means:</strong> 
+Goldman Sachs estimates the conflict's oil shock will push unemployment 
+from 4.4% to 4.6% by Q3 2026 (July-September) in its baseline scenario, 
+and to 4.7% in an adverse scenario. The key mechanism: every 10% rise in
+ oil prices suppresses US payroll growth by roughly 10,000 jobs per 
+month, with restaurants, hotels, and retail bearing most of the burden. 
+In the severely adverse case (prolonged Hormuz closure), unemployment 
+could reach 5.0-5.3% by end of 2026 — levels last seen during the early 
+COVID-19 period.</div>
+  </div>
+
+  <div class="section-hd">Impact by Industry Sector</div>
+  <div class="acronym-bar"><strong>Sector classifications:</strong> 
+Primary = extraction industries (oil, mining, agriculture) | Secondary =
+ manufacturing, construction, processing | Tertiary = services (retail, 
+transport, hospitality, finance) | Quaternary = knowledge economy 
+(technology, research, software, consulting)</div>
+  <table class="data-table">
+    <thead><tr><th>Industry Sector</th><th>Classification</th><th>Direct Impact</th><th>Q2 2026 Outlook</th><th>Net Employment Effect</th></tr></thead>
+    <tbody>
+      <tr><td class="col-head">Petroleum Refining</td><td>Primary energy</td><td class="warn">High margins; supply-constrained; US exports benefit from high prices</td><td class="warn">Volatile — high margins, tight supply</td><td class="dn">+15,000 shale-related</td></tr>
+      <tr><td class="col-head">Automobile Manufacturing</td><td>Secondary — durable goods</td><td class="up">Input costs rising; consumer demand dropping for large vehicles</td><td class="up">Output -5 to -10%</td><td class="up">-20,000 to -40,000</td></tr>
+      <tr><td class="col-head">Chemicals and Plastics</td><td>Secondary — petrochemical</td><td class="up">Feedstock costs +30-50%; production cuts imminent</td><td class="up">Production cuts expected</td><td class="up">-10,000 to -20,000</td></tr>
+      <tr><td class="col-head">Airlines and Aviation</td><td>Tertiary services</td><td class="up">Jet fuel +120%; route reductions begun; some carriers at risk</td><td class="up">Significant losses; some bankruptcies possible</td><td class="up">-30,000 to -50,000</td></tr>
+      <tr><td class="col-head">Restaurants and Hospitality</td><td>Tertiary services</td><td class="up">Household spending falls sharply; delivery costs up; identified as hardest hit sector (Goldman Sachs)</td><td class="up">Revenue -8 to -15%</td><td class="up">-50,000 to -80,000</td></tr>
+      <tr><td class="col-head">Retail Trade</td><td>Tertiary distribution</td><td class="up">Freight costs + lower consumer discretionary spending</td><td class="up">Sales -4 to -8%</td><td class="up">-40,000 to -70,000</td></tr>
+      <tr><td class="col-head">Agriculture</td><td>Primary commodity</td><td class="up">Fertilizer +65%; diesel for equipment +35%; margin compression</td><td class="up">Farm income hit; crop mix shifting</td><td class="warn">Mixed — price windfall vs. cost rise</td></tr>
+      <tr><td class="col-head">Technology and Software</td><td>Quaternary knowledge</td><td class="warn">Indirect via weaker consumer; AI capital expenditure uncertainty</td><td class="warn">Slowdown but less directly hit</td><td class="warn">AI displacement ongoing</td></tr>
+      <tr><td class="col-head">Defense and Aerospace</td><td>Secondary — public sector</td><td class="dn">Active conflict = significant contract expansion and procurement</td><td class="dn">Strong growth — demand surge</td><td class="dn">+20,000 to +40,000</td></tr>
+      <tr><td class="col-head">Healthcare</td><td>Tertiary services</td><td class="warn">Energy cost up; relatively stable demand base; supply chain inflation</td><td class="warn">Inflation in supply chain; otherwise resilient</td><td class="dn">Stable — only sector consistently adding jobs</td></tr>
+    </tbody>
+  </table>
+  <p class="src-note">Source: Goldman Sachs "Iran Conflict US Jobs 
+Impact" (March 26, 2026); Bureau of Labor Statistics Sector Employment 
+Data; Oxford Economics Sectoral Analysis</p>
+
+</div>
+</div>
+
+<!-- ═══════════ TAB: TRADE ═══════════ -->
+<div id="tab-trade" class="tab-panel">
+<div class="page-wrap">
+
+  <div class="section-hd">Global Trade and Export Impact</div>
+  <div class="acronym-bar"><strong>Key terms:</strong> bpd = barrels per
+ day | bcm = billion cubic metres | LNG = Liquefied Natural Gas | FDI = 
+Foreign Direct Investment | WTO = World Trade Organization | GCC = Gulf 
+Cooperation Council (Bahrain, Kuwait, Oman, Qatar, Saudi Arabia, UAE) | 
+USDA = US Department of Agriculture | t = metric tonne | Q2 = April-June
+ 2026 | Q3 = July-September 2026 | Q4 = October-December 2026</div>
+
+  <div class="expert-quote">
+    <div class="eq-text">"The Strait of Hormuz is not merely an oil 
+chokepoint — it is also the transit route for 33% of global fertilizer 
+and critical high-tech supply chains. A sustained closure reshapes 
+global commodity markets, food systems, industrial supply chains, 
+financial conditions and geopolitical alignments — potentially for 
+years."</div>
+    <div class="eq-attr">— <span>World Economic Forum</span>, "The Global Price Tag of Conflict in the Middle East," March 2026</div>
+  </div>
+
+  <div class="section-hd" style="font-size:16px;">Export Impact by Sector — Drag the Slider to See Each Time Period</div>
+  <div class="trade-slider-wrap">
+    <div class="chart-title">Estimated US Export Volume Change by Sector Across Four Time Periods</div>
+    <div class="chart-sub">Use the slider below to move between time 
+periods. Each card shows the estimated percentage change in export 
+volume vs. the 2025 annual average, with explanation of the driver. 
+Source: Goldman Sachs, USDA, Oxford Economics (2026).</div>
+    <div class="slider-label"><span>Conflict Start (Feb-Mar)</span><span>Q2 (Apr-Jun)</span><span>Q3 (Jul-Sep)</span><span>Q4 (Oct-Dec)</span></div>
+    <input type="range" class="trade-slider" id="tradeSlider" min="0" max="3" step="1" value="0" oninput="updateTrade(this.value)">
+    <div style="text-align:center;"><div class="period-badge" id="tradePeriod">Conflict Start — February to March 2026</div></div>
+    <div class="trade-display" id="tradeDisplay"><div class="trade-card" style="border-left-color:#2E7D32;"><div class="trade-sector">Aerospace and Defense</div><div class="trade-val" style="color:#2E7D32;">+12%</div><div class="trade-desc">Active conflict; allied orders surge immediately (Goldman Sachs)</div></div><div class="trade-card" style="border-left-color:#E53E3E;"><div class="trade-sector">Agriculture</div><div class="trade-val" style="color:#E53E3E;">-4%</div><div class="trade-desc">Fertilizer +65%; logistics disrupted; crop shifts beginning (USDA)</div></div><div class="trade-card" style="border-left-color:#2E7D32;"><div class="trade-sector">LNG Exports</div><div class="trade-val" style="color:#2E7D32;">+18%</div><div class="trade-desc">Europe seeking alternatives; US liquefied natural gas at record demand (Goldman)</div></div><div class="trade-card" style="border-left-color:#F57C00;"><div class="trade-sector">Technology</div><div class="trade-val" style="color:#F57C00;">-3%</div><div class="trade-desc">Early demand slowdown; Asia supply chain stress starting (Oxford Economics)</div></div><div class="trade-card" style="border-left-color:#E53E3E;"><div class="trade-sector">Automobiles</div><div class="trade-val" style="color:#E53E3E;">-6%</div><div class="trade-desc">Input cost surge; consumer discretionary falling (Goldman Sachs)</div></div><div class="trade-card" style="border-left-color:#E53E3E;"><div class="trade-sector">Shipping and Freight</div><div class="trade-val" style="color:#E53E3E;">+40% cost</div><div class="trade-desc">Hormuz closure; insurance pullback; route rerouting begins (Bloomberg)</div></div></div>
+    <p style="font-size:11px;color:var(--text-muted);margin-top:10px;">Source:
+ Goldman Sachs Global Trade Monitor (2026); USDA Economic Research 
+Service; Oxford Economics Iran Trade Impact Assessment (March 31, 2026)</p>
+  </div>
+
+  <div class="section-hd">US Export Volume by Sector — Chart View</div>
+  <div class="chart-grid-2">
+    <div class="chart-wrap">
+      <div class="chart-title">US Export Volume Change by Sector (% vs. 2025 Average)</div>
+      <div class="chart-sub">Positive values (green bars) = export 
+growth. Negative values (red bars) = export decline. Source: Goldman 
+Sachs, USDA, Oxford Economics (2026). Q2 = Apr-Jun, Q3 = Jul-Sep, Q4 = 
+Oct-Dec.</div>
+      <canvas id="usExportChart" height="155"></canvas>
+    </div>
+    <div class="chart-wrap">
+      <div class="chart-title">Key Maritime Chokepoints — Traffic as Percentage of Normal</div>
+      <div class="chart-sub">Chevron CEO Mike Wirth (March 28): "There 
+are very real, physical manifestations of the closure of the Strait of 
+Hormuz working their way around the world." Sources: Bloomberg, IEA, 
+Chevron statement.</div>
+      <canvas id="shippingChart" height="155"></canvas>
+    </div>
+  </div>
+
+  <div class="section-hd">Export and Trade Impact by Sector — Full Table</div>
+  <table class="data-table">
+    <thead><tr><th>Sector</th><th>Pre-Conflict Volume</th><th>Now (Q1 2026)</th><th>Q2 2026 (Apr-Jun)</th><th>Q3 2026 (Jul-Sep)</th><th>Q4 2026 (Oct-Dec)</th><th>Primary Driver</th></tr></thead>
+    <tbody>
+      <tr><td class="col-head">Aerospace and Defense</td><td>Baseline</td><td class="dn">Contracts surging</td><td class="dn">Rising sharply</td><td class="dn">Elevated</td><td class="dn">Sustained</td><td>Active conflict spending; allied procurement orders</td></tr>
+      <tr><td class="col-head">Agriculture and Grains</td><td>Baseline</td><td class="warn">Disrupted</td><td class="up">-8 to -15%</td><td class="up">-6 to -12%</td><td class="warn">-3 to -8%</td><td>Fertilizer +65%; logistics cost rise; crop mix shift</td></tr>
+      <tr><td class="col-head">Liquefied Natural Gas Exports</td><td>Baseline</td><td class="dn">Record demand surge</td><td class="dn">Record high</td><td class="dn">Elevated</td><td class="warn">Moderating</td><td>Europe desperately seeking alternatives; US LNG at windfall prices</td></tr>
+      <tr><td class="col-head">Technology and Semiconductors</td><td>Baseline</td><td class="warn">Early slowdown</td><td class="up">-5 to -10%</td><td class="up">-8 to -12%</td><td class="up">-5 to -8%</td><td>Global demand destruction; Asia supply chain disruption</td></tr>
+      <tr><td class="col-head">Automobiles and Parts</td><td>Baseline</td><td class="warn">Cost pressure building</td><td class="up">-10 to -18%</td><td class="up">-8 to -14%</td><td class="warn">-5 to -10%</td><td>Input costs; consumer demand drop; shipping disruption</td></tr>
+      <tr><td class="col-head">Industrial Machinery</td><td>Baseline</td><td class="warn">Orders slowing</td><td class="up">-8 to -15%</td><td class="up">-6 to -12%</td><td class="warn">-3 to -8%</td><td>Business investment freeze; capital expenditure pullback</td></tr>
+      <tr><td class="col-head">Chemicals and Petrochemicals</td><td>Baseline</td><td class="up">Cost squeeze</td><td class="up">-12 to -20%</td><td class="up">-10 to -16%</td><td class="warn">-5 to -10%</td><td>Feedstock surge; EU demand falling; shipping reroute</td></tr>
+      <tr><td class="col-head">Shipping and Logistics</td><td>Baseline</td><td class="up">+40% cost</td><td class="up">Cost +40-60%</td><td class="warn">Cost +30-45%</td><td class="warn">Cost +15-30%</td><td>Hormuz closure; insurance pullback; rerouting delays</td></tr>
+    </tbody>
+  </table>
+  <p class="src-note">Source: Goldman Sachs Global Trade Monitor (2026);
+ USDA Economic Research Service; Oxford Economics Iran Trade Impact 
+Assessment (March 31, 2026); World Bank Global Economic Prospects (2026)</p>
+
+  <div class="section-hd">Global Shipping Traffic Over Time</div>
+  <div class="chart-wrap">
+    <div class="chart-title">Percentage of Normal Traffic Through Key Maritime Chokepoints — February 27 to April 1, 2026</div>
+    <div class="chart-sub">The Strait of Hormuz (red line) dropped from 
+100% to approximately 8% of normal traffic within two weeks of the 
+conflict starting — the most severe maritime disruption in modern 
+history. The Red Sea route (Suez Canal) also remains impaired from 
+renewed Houthi attacks. Source: Bloomberg, IEA, Chevron (March 2026).</div>
+    <canvas id="chokepointChart" height="80"></canvas>
+    <div class="chart-explainer"><strong>What this means:</strong> The 
+Strait of Hormuz — a passage roughly 100 miles long between Iran and 
+Oman — normally carries 20 million barrels of oil per day and 112 
+billion cubic metres of LNG per year. It is now effectively closed. 
+Rerouting oil from the Persian Gulf around the Arabian Peninsula adds 
+2-3 weeks of transit time and dramatically higher insurance and 
+bunkering costs. Shell's CEO warned disruptions are spreading from South
+ Asia to Southeast Asia to Northeast Asia and then Europe. The global 
+supply chain, analysts warn, could take up to a year to recover even 
+after the Strait reopens.</div>
+  </div>
+
+</div>
+</div>
+
+<!-- ═══════════ TAB: COUNTRIES ═══════════ -->
+<div id="tab-countries" class="tab-panel">
+<div class="page-wrap">
+
+  <div class="section-hd">Country-by-Country Economic Impact</div>
+  <div class="acronym-bar"><strong>Key terms:</strong> GDP = Gross 
+Domestic Product | FDI = Foreign Direct Investment | GCC = Gulf 
+Cooperation Council (Bahrain, Kuwait, Oman, Qatar, Saudi Arabia, UAE) | 
+LPG = Liquefied Petroleum Gas (cooking fuel) | LNG = Liquefied Natural 
+Gas | bpd = barrels per day | PBOC = People's Bank of China | BOJ = Bank
+ of Japan | IRGC = Islamic Revolutionary Guard Corps (Iran) | y/y = 
+year-on-year | Q2 = April-June | Q3 = July-September | Q4 = 
+October-December 2026</div>
+  <div class="info-box">Sources for all country analysis: Wikipedia 
+"Economic Impact of the 2026 Iran Conflict" (April 1, 2026); WEF Global 
+Price Tag Report (March 2026); Oxford Economics Iran Conflict Tracker; 
+Goldman Sachs; Capital Economics; Dallas Federal Reserve; IEA</div>
+
+  <div class="country-grid">
+
+    <div class="country-card">
+      <div class="cc-head"><div><div class="cc-name">United States</div><span class="cc-status s-severe">Severe — 50% Recession Risk</span></div><canvas id="pie_usa" width="80" height="80"></canvas></div>
+      <div class="cc-body">
+        <div class="cc-stats">
+          <div class="cstat"><div class="cstat-label">GDP 2026 Baseline</div><div class="cstat-val">2.1%</div></div>
+          <div class="cstat"><div class="cstat-label">Recession Risk</div><div class="cstat-val red">~50%</div></div>
+          <div class="cstat"><div class="cstat-label">Unemployment Q3</div><div class="cstat-val orange">4.6%</div></div>
+          <div class="cstat"><div class="cstat-label">Jobs Lost per Month</div><div class="cstat-val red">10,000+</div></div>
+        </div>
+        <p class="cc-desc">The US economy, already fragile after 
+creating just 116,000 jobs in all of 2025 and losing 92,000 in February 
+alone, faces mounting recession risk. Goldman Sachs cut its GDP forecast
+ to 2.1%. Moody's Zandi warns recession becomes near-certain if oil 
+averages $125 per barrel in Q2. Consumer confidence is at multi-year 
+lows; 65% of Americans expect a recession in 12 months (NerdWallet, 
+March 2026). The Federal Reserve faces a painful dilemma — cut rates to 
+fight unemployment, or hold to combat war-driven inflation.</p>
+        <p style="font-size:11px;color:var(--text-muted);margin-bottom:6px;">Q2 = April-June | Q3 = July-September | Q4 = October-December 2026</p>
+        <div class="export-chips"><span class="chip-red">Retail Falling</span><span class="chip-red">Manufacturing Falling</span><span class="chip-green">LNG Exports Rising</span><span class="chip-red">Agriculture Falling</span><span class="chip-green">Defense Contracts Rising</span></div>
+        <div class="cc-driver">Key Driver: Oil Price Shock to Consumer</div>
+      </div>
+    </div>
+
+    <div class="country-card">
+      <div class="cc-head"><div><div class="cc-name">Russia</div><span class="cc-status s-mixed">Mixed — Short-Term Windfall</span></div><canvas id="pie_russia" width="80" height="80"></canvas></div>
+      <div class="cc-body">
+        <div class="cc-stats">
+          <div class="cstat"><div class="cstat-label">Oil Revenue</div><div class="cstat-val green">Rising</div></div>
+          <div class="cstat"><div class="cstat-label">Ruble vs US Dollar</div><div class="cstat-val green">84 (Stronger)</div></div>
+          <div class="cstat"><div class="cstat-label">GDP 2026 Estimate</div><div class="cstat-val orange">1.5-2%</div></div>
+          <div class="cstat"><div class="cstat-label">Sanctions</div><div class="cstat-val red">Ongoing</div></div>
+        </div>
+        <p class="cc-desc">Russia benefits paradoxically in the short 
+term — higher global oil prices boost Kremlin revenues from 
+non-sanctioned oil exports. India was granted a US Treasury emergency 
+30-day waiver to buy stranded Russian oil to stabilize domestic fuel 
+prices. However, long-term structural sanctions and the risk that a 
+global recession kills oil demand cap Russia's gains. The Russia-Ukraine
+ conflict continues to drain defense spending and structural reforms 
+remain absent.</p>
+        <div class="export-chips"><span class="chip-green">Oil and Gas — Price Surge Windfall</span><span class="chip-red">European Trade — Blocked</span><span class="chip-red">Manufactured Goods — Falling</span></div>
+        <div class="cc-driver">Key Driver: Oil Price Windfall Revenue</div>
+      </div>
+    </div>
+
+    <div class="country-card">
+      <div class="cc-head"><div><div class="cc-name">China</div><span class="cc-status s-severe">Severe — Export Nation Hit</span></div><canvas id="pie_china" width="80" height="80"></canvas></div>
+      <div class="cc-body">
+        <div class="cc-stats">
+          <div class="cstat"><div class="cstat-label">GDP Baseline</div><div class="cstat-val orange">4.4%</div></div>
+          <div class="cstat"><div class="cstat-label">GDP Prolonged Conflict</div><div class="cstat-val red">3.4%</div></div>
+          <div class="cstat"><div class="cstat-label">Gulf Oil Share</div><div class="cstat-val red">80%+</div></div>
+          <div class="cstat"><div class="cstat-label">LNG from Hormuz</div><div class="cstat-val red">59%</div></div>
+        </div>
+        <p class="cc-desc">China receives more than 80% of Gulf oil 
+exports through Hormuz. While large strategic reserves cushion 
+short-term disruption, higher energy costs feed directly into steel, 
+chemicals, and electronics production costs, squeezing margins and 
+weakening export competitiveness. In a prolonged conflict scenario, GDP 
+falls from 4.4% to below 3% annually. "As an export nation, China's 
+economic health will suffer from a global economic downturn" (Middle 
+East Council on Global Affairs, WEF March 2026).</p>
+        <div class="export-chips"><span class="chip-red">Electronics — Falling</span><span class="chip-red">Steel Production — Falling</span><span class="chip-red">Chemicals — Falling</span><span class="chip-blue">Strategic Reserves — Short-term Buffer</span></div>
+        <div class="cc-driver">Key Driver: Export Demand Collapse</div>
+      </div>
+    </div>
+
+    <div class="country-card">
+      <div class="cc-head"><div><div class="cc-name">Japan</div><span class="cc-status s-critical">Critical — 90% Oil via Hormuz</span></div><canvas id="pie_japan" width="80" height="80"></canvas></div>
+      <div class="cc-body">
+        <div class="cc-stats">
+          <div class="cstat"><div class="cstat-label">Oil from Middle East</div><div class="cstat-val red">~90%</div></div>
+          <div class="cstat"><div class="cstat-label">Yen vs US Dollar</div><div class="cstat-val red">157.4</div></div>
+          <div class="cstat"><div class="cstat-label">GDP Growth Projection</div><div class="cstat-val orange">0.5-1%</div></div>
+          <div class="cstat"><div class="cstat-label">Trade Balance</div><div class="cstat-val red">Widening Deficit</div></div>
+        </div>
+        <p class="cc-desc">Japan is the most exposed advanced economy. 
+Nearly 90% of its crude oil comes from the Middle East, virtually all 
+routed via Hormuz (WEF, March 2026). LNG prices in Asia have surged 
+dramatically. The Bank of Japan faces an impossible dilemma — raise 
+rates to defend a weakening yen, or hold to support a slowing economy. 
+Automobile production, electronics supply chains, and steel 
+manufacturing are all under severe stress. Japan's trade deficit is 
+widening rapidly.</p>
+        <div class="export-chips"><span class="chip-red">Automobiles — Severe Decline</span><span class="chip-red">Electronics — Falling</span><span class="chip-red">Steel Production — Falling</span></div>
+        <div class="cc-driver">Key Driver: Import Energy Dependency</div>
+      </div>
+    </div>
+
+    <div class="country-card">
+      <div class="cc-head"><div><div class="cc-name">South Korea</div><span class="cc-status s-critical">Critical — Emergency Fund Activated</span></div><canvas id="pie_korea" width="80" height="80"></canvas></div>
+      <div class="cc-body">
+        <div class="cc-stats">
+          <div class="cstat"><div class="cstat-label">Oil from Middle East</div><div class="cstat-val red">70%</div></div>
+          <div class="cstat"><div class="cstat-label">Oil via Hormuz</div><div class="cstat-val red">95%+</div></div>
+          <div class="cstat"><div class="cstat-label">Emergency Fund</div><div class="cstat-val orange">Won 100 Trillion ($68B)</div></div>
+          <div class="cstat"><div class="cstat-label">Won vs US Dollar</div><div class="cstat-val red">1,432</div></div>
+        </div>
+        <p class="cc-desc">South Korea activated a 100 trillion Korean 
+won (~$68 billion USD) market stabilization programme — one of the 
+largest emergency economic responses in Korean history (WEF, March 
+2026). With 95%+ of Gulf crude routed via Hormuz, Korea is extremely 
+vulnerable. The semiconductor and shipbuilding industries face severe 
+energy cost spikes. The won has fallen sharply, driving import inflation
+ while squeezing exporters' margins.</p>
+        <div class="export-chips"><span class="chip-red">Semiconductors — Falling</span><span class="chip-red">Shipbuilding — Falling</span><span class="chip-red">Steel and Autos — Falling</span></div>
+        <div class="cc-driver">Key Driver: Energy Import Crisis and Currency</div>
+      </div>
+    </div>
+
+    <div class="country-card">
+      <div class="cc-head"><div><div class="cc-name">India</div><span class="cc-status s-critical">Critical — Fuel Rationing Active</span></div><canvas id="pie_india" width="80" height="80"></canvas></div>
+      <div class="cc-body">
+        <div class="cc-stats">
+          <div class="cstat"><div class="cstat-label">LPG Imports Blocked</div><div class="cstat-val red">60%</div></div>
+          <div class="cstat"><div class="cstat-label">Rupee vs US Dollar</div><div class="cstat-val red">94.20 — Record</div></div>
+          <div class="cstat"><div class="cstat-label">Gujarat Industry Closed</div><div class="cstat-val red">98%</div></div>
+          <div class="cstat"><div class="cstat-label">Manufacturing Index</div><div class="cstat-val red">4-Year Low</div></div>
+        </div>
+        <p class="cc-desc">India is in acute energy crisis. 60% of LPG 
+(Liquefied Petroleum Gas, used for cooking) imports are stranded, 
+prompting invocation of the Essential Commodities Act, rationing cooking
+ gas to homes over businesses (Wikipedia, 2026). Nearly 98% of 
+engineering firms in Gujarat have shuttered due to fuel shortages. The 
+rupee hit a record low of 94.20 per US dollar. India received a US 
+Treasury emergency 30-day waiver to buy Russian oil to stabilize 
+domestic fuel prices.</p>
+        <div class="export-chips"><span class="chip-red">Manufacturing — Near Halt</span><span class="chip-red">Pharmaceuticals — Falling</span><span class="chip-red">Textiles — Falling</span></div>
+        <div class="cc-driver">Key Driver: Fuel Shortage and Currency Crisis</div>
+      </div>
+    </div>
+
+    <div class="country-card">
+      <div class="cc-head"><div><div class="cc-name">Middle East and GCC</div><span class="cc-status s-critical">Critical — In Recession</span></div><canvas id="pie_gcc" width="80" height="80"></canvas></div>
+      <div class="cc-body">
+        <div class="cc-stats">
+          <div class="cstat"><div class="cstat-label">GCC Economic Status</div><div class="cstat-val red">Recession</div></div>
+          <div class="cstat"><div class="cstat-label">Dubai FDI</div><div class="cstat-val red">Collapsing</div></div>
+          <div class="cstat"><div class="cstat-label">Infrastructure</div><div class="cstat-val red">Strike Damage</div></div>
+          <div class="cstat"><div class="cstat-label">GCC Economic Model</div><div class="cstat-val red">Under Collapse Risk</div></div>
+        </div>
+        <p class="cc-desc">Oxford Economics models GCC economies 
+entering recession in prolonged conflict scenarios. Saudi Arabia's 
+largest refinery, Qatar's LNG export facilities, and UAE's Fujairah port
+ have all been struck by Iranian drones. A large-scale departure of 
+foreign residents has followed strikes on civilian infrastructure, 
+directly challenging Dubai's reputation as a stable global hub 
+(Wikipedia, 2026). Wikipedia describes "a systemic collapse of the Gulf 
+Cooperation Council economic model." Oil producers have run out of 
+storage capacity as exports are blocked.</p>
+        <div class="export-chips"><span class="chip-red">Oil and Gas — Physically Blocked</span><span class="chip-red">LNG — Severe Disruption</span><span class="chip-red">Tourism — Collapsed</span><span class="chip-red">FDI — Collapsing</span></div>
+        <div class="cc-driver">Key Driver: Infrastructure Strikes and Export Block</div>
+      </div>
+    </div>
+
+    <div class="country-card">
+      <div class="cc-head"><div><div class="cc-name">Iran</div><span class="cc-status s-critical">At Conflict — Economy in Freefall</span></div><canvas id="pie_iran" width="80" height="80"></canvas></div>
+      <div class="cc-body">
+        <div class="cc-stats">
+          <div class="cstat"><div class="cstat-label">Pre-Conflict Inflation</div><div class="cstat-val red">40%+</div></div>
+          <div class="cstat"><div class="cstat-label">Iranian Rial</div><div class="cstat-val red">Effectively Collapsed</div></div>
+          <div class="cstat"><div class="cstat-label">GDP (World Bank)</div><div class="cstat-val red">Shrinking</div></div>
+          <div class="cstat"><div class="cstat-label">Sanctions Level</div><div class="cstat-val red">Maximum</div></div>
+        </div>
+        <p class="cc-desc">Iran is directly at conflict with the US and 
+Israel since February 28, 2026. Prior to the conflict, Iran's economy 
+was strained by sanctions, protests, and a depreciating rial, with 
+inflation exceeding 40% in 2025 (World Bank, October 2025). Iran's 
+strategy is to internationalize the cost of conflict by disrupting 
+global energy flows — targeting Gulf energy infrastructure to raise 
+economic pressure for de-escalation (WEF, March 2026). On April 1, Trump
+ claimed Iran requested a ceasefire; Iran denied this. Iran demands a 
+guaranteed permanent ceasefire as its condition (Reuters, April 1, 
+2026).</p>
+        <div class="export-chips"><span class="chip-red">Oil Exports — Eliminated</span><span class="chip-red">Petrochemicals — Halted</span><span class="chip-red">All Trade — Near Halt</span></div>
+        <div class="cc-driver">Key Driver: Maximum Sanctions and Active Strikes</div>
+      </div>
+    </div>
+
+    <div class="country-card">
+      <div class="cc-head"><div><div class="cc-name">Brazil</div><span class="cc-status s-moderate">Mixed — Oil Windfall vs. Debt Risk</span></div><canvas id="pie_brazil" width="80" height="80"></canvas></div>
+      <div class="cc-body">
+        <div class="cc-stats">
+          <div class="cstat"><div class="cstat-label">Oil Revenue (Petrobras)</div><div class="cstat-val green">Windfall</div></div>
+          <div class="cstat"><div class="cstat-label">Public Debt to GDP</div><div class="cstat-val orange">88%+</div></div>
+          <div class="cstat"><div class="cstat-label">Real vs US Dollar</div><div class="cstat-val orange">5.72</div></div>
+          <div class="cstat"><div class="cstat-label">Fertilizer Input Cost</div><div class="cstat-val red">+65%</div></div>
+        </div>
+        <p class="cc-desc">Brazil is an oil exporter through Petrobras 
+and benefits from higher prices short-term. However, Brazil's high 
+public debt (~88% of GDP) and reliance on foreign financing make it 
+extremely vulnerable if Global North central banks raise rates to fight 
+conflict-driven inflation. Higher rates globally trigger capital 
+outflows from emerging markets like Brazil, forcing the Banco Central do
+ Brasil to raise rates too — potentially choking growth. Fertilizer 
+price spikes also threaten Brazil's dominant soybean and agricultural 
+export sector (Middle East Council on Global Affairs, WEF March 2026).</p>
+        <div class="export-chips"><span class="chip-green">Oil — Price Windfall</span><span class="chip-red">Soybeans and Agriculture — Cost Squeeze</span><span class="chip-red">Manufactured Goods — Falling</span></div>
+        <div class="cc-driver">Key Driver: Debt Refinancing Cost Risk</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="section-hd" style="margin-top:28px;">GDP Growth Forecast by Country — Q2, Q3, Q4 2026</div>
+  <div class="chart-wrap">
+    <div class="chart-title">Projected Real GDP Growth Rate — Baseline and Adverse Scenarios by Country</div>
+    <div class="chart-sub">Q2 = April to June 2026 | Q3 = July to 
+September 2026 | Q4 = October to December 2026. Adverse scenario assumes
+ Hormuz remains severely disrupted for 6-10 weeks from today. Sources: 
+Goldman Sachs, Capital Economics, Oxford Economics (March 2026).</div>
+    <canvas id="countryGdpChart" height="95"></canvas>
+    <div class="chart-explainer"><strong>Reading this chart:</strong> 
+Japan and GCC economies show the steepest declines in Q2 (April-June) 
+because their oil dependency via Hormuz is highest. India shows a 
+dramatic drop due to the current fuel crisis. China shows a moderate but
+ significant decline given its large strategic reserves buffer. The US 
+and EU show gradual slowdown rather than immediate collapse, as they 
+have greater alternatives available but still face cost-push inflation 
+and demand destruction.</div>
+  </div>
+
+</div>
+</div>
+
+<!-- ═══════════ TAB: PRESS ═══════════ -->
+<div id="tab-press" class="tab-panel">
+<div class="page-wrap">
+
+  <div class="section-hd">Expert Analysis and Major Press Coverage</div>
+  <div class="acronym-bar"><strong>Note on sources:</strong> All 
+articles cited are from real reporting published in 2025-2026 by major 
+US and international news organizations: Bloomberg, Fortune, CNBC, 
+Goldman Sachs, Oxford Economics, World Economic Forum, Harvard Kennedy 
+School, Washington Post (Fareed Zakaria column), New York Times, Fox 
+Business, Dallas Federal Reserve, NPR, Axios, NBC News, Reuters, CNBC. 
+Reporting from non-US outlets has been excluded in favor of US and 
+global institution sources.</div>
+
+  <div class="section-hd" style="font-size:17px;">Expert Voices</div>
+
+  <div class="expert-quote">
+    <div class="eq-text">"The conflict in Iran intensifies. Will oil 
+prices keep rising? The economic impact of the Strait of Hormuz closure 
+is only beginning to emerge. In the coming weeks, we expect to see 
+further evidence of rising fuel prices, restrained demand, and 
+eventually the effects filtering through to macroeconomic indicators 
+such as inflation."</div>
+    <div class="eq-attr">— <span>Fareed Zakaria, CNN GPS (Global Public Square)</span>,
+ Episode: "Conflict in Iran Intensifies; Will Oil Prices Keep Rising?" 
+March 22, 2026. Zakaria hosts CNN's flagship global affairs program; 
+former managing editor of Foreign Affairs; Washington Post columnist; 
+Harvard Kennedy School PhD; author of "Age of Revolutions" (2024).</div>
+  </div>
+  <div class="expert-quote">
+    <div class="eq-text">"Iran is exposing the limits of a presidency 
+built on bluff, improvisation and submission rituals. The conflict lacks
+ clear legal and strategic grounding — airpower rarely achieves regime 
+change, and unilateral action undermines the rules-based international 
+order."</div>
+    <div class="eq-attr">— <span>Fareed Zakaria, Washington Post</span>, March 2026. Published in the Washington Post's foreign affairs column, where Zakaria is a senior contributor.</div>
+  </div>
+  <div class="expert-quote">
+    <div class="eq-text">"If oil prices stay kind of where they are 
+through Memorial Day, certainly through the end of the second quarter, 
+that will push us into recession. Even before the conflict, I thought 
+recession risks were on the rise."</div>
+    <div class="eq-attr">— <span>Mark Zandi, Chief Economist, Moody's Analytics</span> | CNBC, March 25, 2026</div>
+  </div>
+  <div class="expert-quote">
+    <div class="eq-text">"Based on simulations of our global 
+macroeconomic model, oil prices would only need to average close to $125
+ per barrel in the second quarter of this year to push the US into 
+recession. With tensions still elevated, that is not a stretch."</div>
+    <div class="eq-attr">— <span>Mark Zandi, Moody's Analytics</span> | Post on X (formerly Twitter), cited by Fortune, March 25, 2026</div>
+  </div>
+  <div class="expert-quote">
+    <div class="eq-text">"The risk is that if we end up having a 
+recession in a few years, we could go through a transition of very large
+ job losses — much bigger than what was seen after the great financial 
+crisis."</div>
+    <div class="eq-attr">— <span>Gita Gopinath, Former First Deputy Managing Director, International Monetary Fund; Professor, Harvard Kennedy School</span> | Harvard FAS Symposium, March 27, 2026</div>
+  </div>
+  <div class="expert-quote">
+    <div class="eq-text">"We have seen a resurgence in the dollar as the
+ classic flight to quality has taken root. Higher inflation risks are 
+now front and center — fertilizer prices are spiking, food prices will 
+follow."</div>
+    <div class="eq-attr">— <span>Carmen Reinhart, Minos A. Zombanakis 
+Professor of the International Financial System, Harvard Kennedy School;
+ co-author "This Time Is Different: Eight Centuries of Financial Folly"</span> | Harvard FAS Symposium, March 27, 2026</div>
+  </div>
+  <div class="expert-quote">
+    <div class="eq-text">"This is not only a regional crisis. It is a 
+structural shock to the world economy, delivered at a moment of 
+geoeconomic fragility. The longer it runs, the more lasting the damage 
+becomes."</div>
+    <div class="eq-attr">— <span>World Economic Forum</span> | "The Global Price Tag of Conflict in the Middle East," March 2026</div>
+  </div>
+  <div class="expert-quote">
+    <div class="eq-text">"The depth of the problem was not well 
+appreciated by decision makers around the world. If you want to put it 
+in context: two oil crises and one gas crisis, all put together."</div>
+    <div class="eq-attr">— <span>Fatih Birol, Executive Director, International Energy Agency (IEA)</span> | National Press Club of Australia, cited by Fortune, March 2026</div>
+  </div>
+  <div class="expert-quote">
+    <div class="eq-text">"Events that slow growth or raise inflation — 
+especially those that alter trade and supply chains — set off the 
+greatest market dips. Markets tend to underestimate how conflicts can 
+drag on."</div>
+    <div class="eq-attr">— <span>Jared Cohen, President of Global 
+Affairs, Goldman Sachs Institute; Sam Morgan, Global Co-Head of Banking 
+and Markets, Goldman Sachs</span> | New York Times Opinion, August 1, 2025</div>
+  </div>
+
+  <div class="section-hd" style="margin-top:16px;">Major Press Coverage</div>
+  <div class="articles-grid">
+    <div class="article-card"><div class="a-source">Bloomberg <span class="a-date">March 30, 2026</span></div><div class="a-title">How High Could Oil Prices Get with Strait of Hormuz Closure?</div><div class="a-excerpt">At
+ $170 per barrel, Bloomberg Economics SHOK model shows the impact on 
+inflation and growth roughly doubles — a stagflationary shock. US 
+officials are contemplating scenarios where oil surges to $200 per 
+barrel. The energy industry warns the world still has not grasped the 
+severity of the situation. Fuel crunches hitting Asia are spreading 
+west, with Europe at risk of diesel shortages within weeks.</div><span class="a-tag">Oil Shock — $200 per barrel risk — Stagflation</span></div>
+    <div class="article-card red"><div class="a-source">Fortune <span class="a-date">March 25, 2026</span></div><div class="a-title">Moody's Zandi: Recession Odds Creeping Toward 50% — Conflict Could Launch Economic Turmoil by Midyear</div><div class="a-excerpt">US
+ economy lost 92,000 jobs in February 2026. Zandi warns recession 
+near-certain if oil stays at $125 per barrel through Q2. The Strait of 
+Hormuz is also the chokepoint for one-third of global fertilizer — 
+threatening crop prices and grocery inflation well beyond energy alone.</div><span class="a-tag">Recession — Moody's — Fertilizer Crisis</span></div>
+    <div class="article-card"><div class="a-source">Fortune and Goldman Sachs <span class="a-date">March 26, 2026</span></div><div class="a-title">The Iran Conflict Is Costing the US Economy 10,000 Jobs a Month, Goldman Sachs Says</div><div class="a-excerpt">Goldman
+ Sachs estimates the oil price shock triggered by the conflict will 
+suppress payroll growth by roughly 10,000 jobs per month through 
+year-end — hitting restaurants, hotels, and retail hardest. Brent 
+expected to average $105 in March, peak at $115 in April. In an adverse 
+scenario, Brent could hit $140-$160 per barrel.</div><span class="a-tag">Jobs — Goldman Sachs — Labor Market</span></div>
+    <div class="article-card gold"><div class="a-source">CNBC <span class="a-date">March 25, 2026</span></div><div class="a-title">Recession Odds Climb on Wall Street as Economy Shows Cracks Beneath the Surface</div><div class="a-excerpt">The
+ US economy created just 116,000 jobs for all of 2025 and lost 92,000 in
+ February. "That path through is increasingly narrow," Zandi said. 65% 
+of respondents expect a recession in the next 12 months, up 6 points 
+from the month before. An oil shock has preceded virtually every US 
+recession since the Great Depression.</div><span class="a-tag">Wall Street — Recession — Household Spending Falls</span></div>
+    <div class="article-card"><div class="a-source">CNBC <span class="a-date">March 28, 2026</span></div><div class="a-title">Oil Executives Warn: Strait Must Reopen by Mid-April or Disruption Gets Far Worse</div><div class="a-excerpt">Chevron
+ CEO Mike Wirth: "There are very real, physical manifestations of the 
+closure of the Strait of Hormuz working their way around the world." 
+Shell CEO Wael Sawan warned disruptions have moved from South Asia to 
+Southeast Asia, Northeast Asia and then more so into Europe. The window 
+for a diplomatic solution is closing fast.</div><span class="a-tag">Chevron — Shell — Energy Supply Deadline</span></div>
+    <div class="article-card red"><div class="a-source">Oxford Economics <span class="a-date">March 31, 2026</span></div><div class="a-title">Prolonged Conflict in Iran Could Tip the Global Economy into Recession</div><div class="a-excerpt">In
+ the prolonged conflict scenario with Hormuz closed for 6 months, global
+ oil supplies drop nearly 20 million barrels per day. World GDP slows to
+ 1.4% in 2026. Global inflation hits 7.7%. "Unlike 2022, when the global
+ economy kept growing through the price shock, the severity of this 
+disruption tips the world into outright contraction."</div><span class="a-tag">Oxford Economics — 1.4% GDP — Contraction</span></div>
+    <div class="article-card"><div class="a-source">World Economic Forum <span class="a-date">March 2026</span></div><div class="a-title">The Global Price Tag of Conflict in the Middle East</div><div class="a-excerpt">"This
+ is a structural shock to the world economy, delivered at a moment of 
+geoeconomic fragility." More than 80% of oil and LNG shipped through the
+ strait goes to Asian markets. Japan relies on the Middle East for 
+approximately 90% of its crude, South Korea approximately 70%, all via 
+Hormuz. What begins as a battlefield shock "hardens into a geoeconomic 
+one."</div><span class="a-tag">WEF — Structural Shock — Asia Impact</span></div>
+    <div class="article-card gold"><div class="a-source">Harvard Kennedy School — Harvard Gazette <span class="a-date">March 27, 2026</span></div><div class="a-title">Economists Weigh Consequences of Conflict, Tariffs, and Artificial Intelligence</div><div class="a-excerpt">Harvard's
+ Reinhart warned of rising fertilizer prices, stating "Translation: 
+higher inflation risks." Gopinath warned of potential job losses 
+exceeding the Global Financial Crisis. The dollar is seeing "a 
+resurgence as the classic flight to quality." Dani Rodrik noted the 
+global economy has proved surprisingly unaffected by prior shocks but 
+sees "a psychological disconnect with the fundamentals."</div><span class="a-tag">Harvard — IMF — Reinhart — Gopinath</span></div>
+    <div class="article-card"><div class="a-source">Dallas Federal Reserve <span class="a-date">March 20, 2026</span></div><div class="a-title">What the Closure of the Strait of Hormuz Means for the Global Economy</div><div class="a-excerpt">Federal
+ Reserve Bank model: full Hormuz closure raises WTI (West Texas 
+Intermediate) crude to $98 per barrel and lowers global real GDP growth 
+by an annualized 2.9 percentage points in Q2 2026. If disruption lasts 
+three quarters, the reduction reaches 1.3 percentage points off 
+full-year global GDP.</div><span class="a-tag">Dallas Fed — GDP Model — Quantitative Analysis</span></div>
+    <div class="article-card"><div class="a-source">Axios <span class="a-date">April 1, 2026</span></div><div class="a-title">US and Iran Discussing Ceasefire for Reopening Strait, Officials Say</div><div class="a-excerpt">Three
+ US officials tell Axios: the US and Iran are discussing a potential 
+deal — ceasefire in exchange for Iran reopening the Strait of Hormuz. 
+Vice President Vance has been talking to mediators. Trump said on Truth 
+Social: "Iran's New Regime President has just asked the United States 
+for a CEASEFIRE! We will consider when Hormuz Strait is open." Iran 
+denied any such request. Iran separately demands a guaranteed permanent 
+ceasefire as its condition (Reuters, April 1, 2026).</div><span class="a-tag">Ceasefire Talks — Axios — Breaking April 1</span></div>
+    <div class="article-card red"><div class="a-source">NPR <span class="a-date">April 1, 2026</span></div><div class="a-title">Trump to Address Nation; China and Pakistan Issue Joint Call for Peace Talks</div><div class="a-excerpt">Trump
+ addressed the nation, saying military objectives are "nearing 
+completion" and the conflict would end "shortly" without giving a 
+timeline. China and Pakistan issued a joint statement calling for a 
+ceasefire and reopening of the Strait of Hormuz. UK Prime Minister 
+Starmer announced the UK would host a 35-nation virtual meeting to 
+discuss diplomatic measures to reopen the Strait.</div><span class="a-tag">Trump Address — China-Pakistan Mediation — UK</span></div>
+    <div class="article-card"><div class="a-source">Goldman Sachs and New York Times <span class="a-date">August 1, 2025</span></div><div class="a-title">How to Know When a World Event Could Shock the Market</div><div class="a-excerpt">Goldman's
+ analysis of geopolitical shocks since 2008: "Events that slow growth or
+ raise inflation — especially those that alter trade and supply chains —
+ set off the greatest market dips. Markets tend to underestimate how 
+conflicts can drag on." Published as an opinion piece in the New York 
+Times by Jared Cohen (Goldman) and Sam Morgan (Goldman).</div><span class="a-tag">Goldman Sachs — New York Times — Geopolitical Risk</span></div>
+  </div>
+
+</div>
+</div>
+
+<!-- ══════════════════ FOOTER ══════════════════ -->
+<div class="site-footer">
+  <div class="footer-title">Why Peace Matters for the Economy — 2026 Conflict Economic Analysis</div>
+  <p style="margin-bottom:14px;">A comprehensive data-driven analysis of
+ the US-Iran conflict's economic impact on global markets, energy 
+prices, trade, unemployment, and national economies across nine major 
+countries.</p>
+
+  <div style="font-weight:600;color:#90CAF9;font-size:11px;margin-bottom:8px;letter-spacing:1px;text-transform:uppercase;margin-top:8px;">Data Sources and References — All sources listed below</div>
+  <div class="footer-sources-grid">
+    <div class="footer-source-item">Goldman Sachs Global Economics and Commodities Research (March 2026)</div>
+    <div class="footer-source-item">Oxford Economics Iran Conflict Tracker (March 31, 2026)</div>
+    <div class="footer-source-item">Moody's Analytics — Mark Zandi, Chief Economist</div>
+    <div class="footer-source-item">Dallas Federal Reserve Economic Letter (March 20, 2026)</div>
+    <div class="footer-source-item">International Energy Agency (IEA) Emergency Protocols</div>
+    <div class="footer-source-item">World Economic Forum — Global Risks Report 2026</div>
+    <div class="footer-source-item">Harvard Kennedy School FAS Symposium (March 27, 2026)</div>
+    <div class="footer-source-item">Fareed Zakaria GPS, CNN (March 22, 2026)</div>
+    <div class="footer-source-item">Washington Post — Fareed Zakaria Column</div>
+    <div class="footer-source-item">Bloomberg Economics SHOK Model</div>
+    <div class="footer-source-item">Fortune Magazine (March 25-26, 2026)</div>
+    <div class="footer-source-item">CNBC Economic Coverage (March-April 2026)</div>
+    <div class="footer-source-item">New York Times — Goldman Sachs Opinion</div>
+    <div class="footer-source-item">Axios (April 1, 2026)</div>
+    <div class="footer-source-item">NPR News (April 1, 2026)</div>
+    <div class="footer-source-item">Reuters (April 1, 2026)</div>
+    <div class="footer-source-item">NBC News Live Blog (April 1, 2026)</div>
+    <div class="footer-source-item">Wikipedia — Economic Impact of the 2026 Iran Conflict</div>
+    <div class="footer-source-item">UK Parliament Research Briefing (April 1, 2026)</div>
+    <div class="footer-source-item">Capital Economics — Iran Conflict Analysis</div>
+    <div class="footer-source-item">International Monetary Fund (IMF) World Economic Outlook</div>
+    <div class="footer-source-item">World Bank Global Economic Prospects (2026)</div>
+    <div class="footer-source-item">BCA Research — Geopolitical Macro Strategy</div>
+    <div class="footer-source-item">The Economist — Defense Economics Analysis</div>
+  </div>
+
+  <div class="footer-credit">
+    Copyright © 2026 <span>Ridhi Kapoor</span>. All rights reserved.
+  </div>
+  <div class="footer-copy">
+    Design and Data Analysis: Ridhi Kapoor
+  </div>
+  <div class="footer-disclaimer">
+    Analysis current as of April 1, 2026 — Day 33 of the conflict.<br>
+    Conflict began February 28, 2026. All forecasts are sourced from 
+published financial and economic research by third-party institutions 
+and are subject to change. This website is produced for informational 
+and educational purposes only. The term "conflict" is used throughout in
+ place of "war" per editorial convention. No forecast constitutes 
+financial or investment advice. Data accuracy is dependent on public 
+reporting at the time of publication.
+  </div>
+</div>
+
+<!-- ══════════════════ FLOATING LIVE NEWS TICKER (BOTTOM) ══════════════════ -->
+<div class="news-ticker">
+  <div class="news-ticker-label"><div class="pulse-dot"></div>LIVE UPDATES</div>
+  <div class="news-ticker-track">
+    <div class="news-ticker-inner">
+      <span class="nitem"><span class="nhot">BREAKING</span><span class="nsource">Truth Social / Trump (Apr 1):</span>Trump
+ says Iran requested ceasefire; "We will consider when Hormuz Strait is 
+open, free and clear. Until then, we are blasting Iran into oblivion."</span>
+      <span class="nitem"><span class="nhot">BREAKING</span><span class="nsource">Reuters (Apr 1):</span>Iran
+ demands guaranteed permanent ceasefire to end conflict — denies 
+requesting any temporary ceasefire. Intermediaries contacted Iran 
+Tuesday via third-party mediators.</span>
+      <span class="nitem"><span class="nsource">Axios (Apr 1):</span>US 
+and Iran discussing ceasefire-for-Hormuz deal via mediators. VP Vance 
+has been talking to intermediaries. Trump raised talks in call with 
+Saudi Crown Prince.</span>
+      <span class="nitem"><span class="nsource">NPR (Apr 1):</span>China
+ and Pakistan issue joint statement calling for ceasefire and Strait of 
+Hormuz reopening. Pakistani FM has been relaying messages between US and
+ Iran.</span>
+      <span class="nitem"><span class="nsource">White House (Apr 1):</span>Trump
+ addresses nation — military objectives "nearing completion." Says 
+conflict will end "shortly" but offers no timeline. More strikes 
+expected in next 2-3 weeks.</span>
+      <span class="nitem"><span class="nhot">URGENT</span><span class="nsource">CNBC (Apr 1):</span>Iran
+ demands guaranteed ceasefire as condition to reopen Strait — Iran says 
+"no talks via mediators for temporary ceasefire." Positions remain far 
+apart.</span>
+      <span class="nitem"><span class="nsource">UK PM Starmer (Apr 1):</span>UK
+ to host 35-nation virtual meeting to discuss diplomatic and naval 
+options for reopening the Strait of Hormuz. Says keeping strait open 
+"will not be easy."</span>
+      <span class="nitem"><span class="nsource">NBC News (Apr 1):</span>Trump:
+ "Terms aren't good enough yet" to make a deal. Says several countries 
+have committed to helping secure strait but declined to name them.</span>
+      <span class="nitem"><span class="nsource">Wikipedia / IEA (Apr 1):</span>Hormuz
+ blockade now in Day 33. Effective traffic through the strait estimated 
+at 8% of normal — 20 million barrels per day effectively offline. IEA 
+releases record 400 million barrels from strategic reserves.</span>
+      <span class="nitem"><span class="nsource">Goldman Sachs (Mar 27):</span>US
+ conflict in Iran suppressing payroll growth by 10,000 jobs per month 
+through end of 2026. Brent crude expected to peak at $115 in April; 
+$140+ in adverse scenario.</span>
+      <span class="nitem"><span class="nsource">Oxford Economics (Mar 31):</span>Prolonged
+ conflict scenario: world GDP falls to 1.4% in 2026. Global inflation 
+hits 7.7%. ECB and Bank of England to raise rates +100 basis points. US 
+and most advanced economies slide into recession.</span>
+      <span class="nitem"><span class="nsource">Bloomberg (Mar 30):</span>Oil
+ executives warn Strait must reopen by mid-April or physical oil 
+shortages become unavoidable. Europe at risk of diesel shortages in 
+coming weeks if disruption continues.</span>
+      <!-- duplicate for loop -->
+      <span class="nitem"><span class="nhot">BREAKING</span><span class="nsource">Truth Social / Trump (Apr 1):</span>Trump
+ says Iran requested ceasefire; "We will consider when Hormuz Strait is 
+open, free and clear. Until then, we are blasting Iran into oblivion."</span>
+      <span class="nitem"><span class="nhot">BREAKING</span><span class="nsource">Reuters (Apr 1):</span>Iran
+ demands guaranteed permanent ceasefire to end conflict — denies 
+requesting any temporary ceasefire. Intermediaries contacted Iran 
+Tuesday via third-party mediators.</span>
+      <span class="nitem"><span class="nsource">Axios (Apr 1):</span>US 
+and Iran discussing ceasefire-for-Hormuz deal via mediators. VP Vance 
+has been talking to intermediaries. Trump raised talks in call with 
+Saudi Crown Prince.</span>
+      <span class="nitem"><span class="nsource">NPR (Apr 1):</span>China
+ and Pakistan issue joint statement calling for ceasefire and Strait of 
+Hormuz reopening. Pakistani FM has been relaying messages between US and
+ Iran.</span>
+      <span class="nitem"><span class="nsource">White House (Apr 1):</span>Trump
+ addresses nation — military objectives "nearing completion." Says 
+conflict will end "shortly" but offers no timeline. More strikes 
+expected in next 2-3 weeks.</span>
+      <span class="nitem"><span class="nhot">URGENT</span><span class="nsource">CNBC (Apr 1):</span>Iran
+ demands guaranteed ceasefire as condition to reopen Strait — Iran says 
+"no talks via mediators for temporary ceasefire." Positions remain far 
+apart.</span>
+      <span class="nitem"><span class="nsource">UK PM Starmer (Apr 1):</span>UK
+ to host 35-nation virtual meeting to discuss diplomatic and naval 
+options for reopening the Strait of Hormuz. Says keeping strait open 
+"will not be easy."</span>
+      <span class="nitem"><span class="nsource">Goldman Sachs (Mar 27):</span>US
+ conflict in Iran suppressing payroll growth by 10,000 jobs per month 
+through end of 2026. Brent crude expected to peak at $115 in April; 
+$140+ in adverse scenario.</span>
+      <span class="nitem"><span class="nsource">Oxford Economics (Mar 31):</span>Prolonged
+ conflict scenario: world GDP falls to 1.4% in 2026. Global inflation 
+hits 7.7%. ECB and Bank of England to raise rates +100 basis points.</span>
+      <span class="nitem"><span class="nsource">Bloomberg (Mar 30):</span>Oil
+ executives warn Strait must reopen by mid-April or physical oil 
+shortages become unavoidable. Europe at risk of diesel shortages in 
+coming weeks.</span>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── DYNAMIC DATE & DAY COUNTER ──
+const warStart = new Date('2026-02-28');
+const now = new Date(); // always today's actual date
+const days = Math.floor((now - warStart)/(1000*60*60*24));
+const dateStr = now.toLocaleDateString('en-US', {month:'long', day:'numeric', year:'numeric'});
+const dateShort = now.toLocaleDateString('en-US', {month:'short', day:'numeric', year:'numeric'});
+
+// Update all day number spans
+document.querySelectorAll('#dayNum, #dayNumTicker').forEach(el => el.textContent = days);
+
+// Update any "Analysis current as of" text
+const analysisNote = document.querySelector('.header-analysis-date');
+if (analysisNote) analysisNote.textContent = 'Analysis current as of ' + dateStr + ' — Day ' + days;
+
+// Update header right-side date display
+const headerDate = document.querySelector('.header-date-display');
+if (headerDate) { headerDate.children[0].textContent = 'Analysis current as of ' + dateStr; headerDate.children[1].textContent = 'Day ' + days + ' since conflict began February 28, 2026'; }
+
+// Update energy banner title
+const bannerTitle = document.getElementById('energyBannerTitle');
+if (bannerTitle) bannerTitle.textContent = 'Energy Price Shock Tracker — ' + dateStr;
+
+// Timeline bar — 45-day scale
+setTimeout(()=>{
+  const pct = Math.min(100, (days / 45) * 100);
+  const fill = document.getElementById('ctlFill');
+  const needle = document.getElementById('ctlNeedle');
+  const todayLabel = document.getElementById('ctlTodayLabel');
+  if(fill) fill.style.width = pct + '%';
+  if(needle) { needle.style.left = pct + '%'; }
+  if(todayLabel) { todayLabel.style.left = pct + '%'; todayLabel.textContent = 'Day ' + days + ' — ' + dateShort; }
+}, 400);
+
+// Tab switching
+function showTab(id, btn) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active');
+  btn.classList.add('active');
+  setTimeout(()=> renderTabCharts(id), 60);
+}
+
+// Currency panel
+function toggleCurrency() {
+  document.getElementById('currencyPanel').classList.toggle('open');
+}
+document.addEventListener('click', function(e) {
+  const panel = document.getElementById('currencyPanel');
+  const btn = document.querySelector('.currency-btn');
+  if (panel && !panel.contains(e.target) && btn && !btn.contains(e.target)) {
+    panel.classList.remove('open');
+  }
+});
+
+// Modals
+function openWarModal(){document.getElementById('warModal').classList.add('open');document.body.style.overflow='hidden';}
+function closeWarModal(){document.getElementById('warModal').classList.remove('open');document.body.style.overflow='';}
+function openRecModal(){document.getElementById('recModal').classList.add('open');document.body.style.overflow='hidden';}
+function closeRecModal(){document.getElementById('recModal').classList.remove('open');document.body.style.overflow='';}
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeWarModal();closeRecModal();}});
+
+// Trade Slider
+const tradePeriods = [
+  { label:'Conflict Start — February to March 2026',
+    data:[
+      {sector:'Aerospace and Defense',val:'+12%',color:'#2E7D32',desc:'Active conflict; allied orders surge immediately (Goldman Sachs)'},
+      {sector:'Agriculture',val:'-4%',color:'#E53E3E',desc:'Fertilizer +65%; logistics disrupted; crop shifts beginning (USDA)'},
+      {sector:'LNG Exports',val:'+18%',color:'#2E7D32',desc:'Europe seeking alternatives; US liquefied natural gas at record demand (Goldman)'},
+      {sector:'Technology',val:'-3%',color:'#F57C00',desc:'Early demand slowdown; Asia supply chain stress starting (Oxford Economics)'},
+      {sector:'Automobiles',val:'-6%',color:'#E53E3E',desc:'Input cost surge; consumer discretionary falling (Goldman Sachs)'},
+      {sector:'Shipping and Freight',val:'+40% cost',color:'#E53E3E',desc:'Hormuz closure; insurance pullback; route rerouting begins (Bloomberg)'},
+    ]},
+  { label:'Q2 2026 — April, May, June',
+    data:[
+      {sector:'Aerospace and Defense',val:'+20%',color:'#2E7D32',desc:'Contracts accelerate; US defense exports surging (Oxford Economics)'},
+      {sector:'Agriculture',val:'-12%',color:'#E53E3E',desc:'Fertilizer at +70-80%; farmers switching crops; harvest at risk (USDA)'},
+      {sector:'LNG Exports',val:'+25%',color:'#2E7D32',desc:'Europe gas emergency; US LNG priced out most alternatives (Goldman Sachs)'},
+      {sector:'Technology',val:'-8%',color:'#E53E3E',desc:'Global demand destruction accelerating; Asia production constrained (Oxford)'},
+      {sector:'Automobiles',val:'-14%',color:'#E53E3E',desc:'Consumer spending -8%; input costs rising; output cuts announced'},
+      {sector:'Shipping and Freight',val:'+55% cost',color:'#E53E3E',desc:'Disruption spreading from Asia to Europe (Shell CEO, March 28, 2026)'},
+    ]},
+  { label:'Q3 2026 — July, August, September',
+    data:[
+      {sector:'Aerospace and Defense',val:'+15%',color:'#2E7D32',desc:'Sustained elevated; some normalization in allied procurement orders'},
+      {sector:'Agriculture',val:'-9%',color:'#E53E3E',desc:'Fertilizer +50-65%; harvest impact materializing; food inflation arriving'},
+      {sector:'LNG Exports',val:'+18%',color:'#2E7D32',desc:'High but moderating as Europe finds partial alternatives'},
+      {sector:'Technology',val:'-10%',color:'#E53E3E',desc:'Recession risk hitting demand; semiconductor orders down sharply'},
+      {sector:'Automobiles',val:'-11%',color:'#E53E3E',desc:'Partial recovery if oil moderates; consumer still squeezed'},
+      {sector:'Shipping and Freight',val:'+38% cost',color:'#F57C00',desc:'Gradual improvement as routes adapt; still well above baseline'},
+    ]},
+  { label:'Q4 2026 — October, November, December',
+    data:[
+      {sector:'Aerospace and Defense',val:'+10%',color:'#2E7D32',desc:'Elevated but stabilizing; long-term contracts in place'},
+      {sector:'Agriculture',val:'-6%',color:'#F57C00',desc:'Partial fertilizer recovery; food prices elevated 6-12 more months'},
+      {sector:'LNG Exports',val:'+12%',color:'#2E7D32',desc:'Moderating as Hormuz gradually reopens; still above pre-conflict'},
+      {sector:'Technology',val:'-6%',color:'#F57C00',desc:'Gradual demand recovery; supply chains still adjusting'},
+      {sector:'Automobiles',val:'-7%',color:'#F57C00',desc:'Partial recovery if oil at $80-100 per barrel (Goldman Sachs)'},
+      {sector:'Shipping and Freight',val:'+22% cost',color:'#F57C00',desc:'Still elevated; supply chain takes up to a year to recover (shipping analysts)'},
+    ]}
+];
+function updateTrade(v){
+  const p=tradePeriods[v];
+  document.getElementById('tradePeriod').textContent=p.label;
+  document.getElementById('tradeDisplay').innerHTML=p.data.map(d=>`<div class="trade-card" style="border-left-color:${d.color};"><div class="trade-sector">${d.sector}</div><div class="trade-val" style="color:${d.color};">${d.val}</div><div class="trade-desc">${d.desc}</div></div>`).join('');
+}
+updateTrade(0);
+
+// Charts
+Chart.defaults.font.family="'IBM Plex Sans',sans-serif";
+Chart.defaults.color='#4A5568';
+
+function renderFuelChart(){
+  const c=document.getElementById('fuelChart');if(!c)return;if(c._ci)c._ci.destroy();
+  c._ci=new Chart(c,{type:'line',data:{
+    labels:['Feb 27','Mar 1','Mar 5','Mar 10','Mar 15','Mar 20','Mar 25','Mar 31','Apr 6','Apr 8\n(TODAY)','Apr 15\n(Q2 start)','May 15\n(Q2 mid)','Jun 30\n(Q2 end)','Jul 15\n(Q3 start)','Sep 30\n(Q3 end)','Oct 15\n(Q4 start)','Dec 31\n(Q4 end)'],
+    datasets:[
+      {label:'Brent Crude Oil ($/barrel) — LEFT axis',data:[72,80,90,96,103,106,112,118,111,94,115,112,100,88,82,80,76],borderColor:'#C62828',backgroundColor:'rgba(198,40,40,0.07)',borderWidth:2.5,tension:0.4,pointRadius:[4,3,3,3,3,3,3,5,5,7,3,3,3,3,3,3,3],fill:true},
+      {label:'US Gasoline ($/gallon) — RIGHT axis',data:[3.10,3.25,3.50,3.68,3.85,3.96,4.00,4.02,4.11,4.11,4.30,4.10,3.80,3.50,3.20,3.10,3.00],borderColor:'#F57C00',backgroundColor:'rgba(245,124,0,0.05)',borderWidth:2,tension:0.4,pointRadius:[4,3,3,3,3,3,3,5,5,7,3,3,3,3,3,3,3],fill:false,yAxisID:'y2'},
+      {label:'EU Natural Gas TTF (EUR/MWh) — LEFT axis',data:[32,36,42,48,54,57,60,62,62,60,72,78,70,60,55,48,44],borderColor:'#1565C0',backgroundColor:'rgba(21,101,192,0.04)',borderWidth:2,tension:0.4,pointRadius:[4,3,3,3,3,3,3,5,5,7,3,3,3,3,3,3,3],fill:false},
+    ]},
+    options:{responsive:true,plugins:{legend:{position:'top'},tooltip:{mode:'index',intersect:false,callbacks:{footer:items=>{const idx=items[0].dataIndex;return idx>=10?'PROJECTED (dotted portion)':'ACTUAL data';}}},annotation:{}},scales:{y:{title:{display:true,text:'Price in USD per barrel or EUR per megawatt-hour'},beginAtZero:false,min:25},y2:{position:'right',title:{display:true,text:'US Gasoline ($ per gallon)'},beginAtZero:false,min:2.5,max:6.2,grid:{drawOnChartArea:false}},x:{grid:{display:false}}}}
+  });
+  // make projected portion visually distinct via manual dataset update
+  ['datasets'].forEach(()=>{
+    c._ci.data.datasets.forEach(ds=>{
+      const seg=[];ds.data.forEach((_,i)=>{seg.push(i>=10?[3,4]:[]);});
+      ds.segment={borderDash:ctx=>ctx.p0DataIndex>=9?[5,4]:[]};
+    });
+    c._ci.update();
+  });
+}
+
+function renderGdpChart(){
+  const c=document.getElementById('gdpChart');if(!c)return;if(c._ci)c._ci.destroy();
+  c._ci=new Chart(c,{type:'bar',data:{
+    labels:['USA','EU (Eurozone)','China','Japan','South Korea','India','GCC (Gulf States)','Brazil'],
+    datasets:[
+      {label:'Baseline — Short conflict (under 6 weeks)',data:[2.4,1.4,4.4,1.0,2.0,6.2,3.1,2.5],backgroundColor:'rgba(21,101,192,0.7)',borderRadius:3},
+      {label:'Adverse — Extended conflict (6-10 weeks)',data:[1.9,0.8,3.8,0.3,1.2,4.8,1.5,1.8],backgroundColor:'rgba(245,124,0,0.85)',borderRadius:3},
+      {label:'Severely Adverse — Prolonged conflict (10+ weeks)',data:[1.1,0.3,3.4,-0.5,0.5,3.5,-1.5,0.8],backgroundColor:'rgba(198,40,40,0.85)',borderRadius:3},
+    ]},
+    options:{responsive:true,plugins:{legend:{position:'top'},tooltip:{mode:'index'}},scales:{y:{title:{display:true,text:'Projected Annual GDP Growth Rate (%)'},beginAtZero:false},x:{grid:{display:false}}}}
+  });
+}
+
+function renderUnempChart(){
+  const c=document.getElementById('unempChart');if(!c)return;if(c._ci)c._ci.destroy();
+  c._ci=new Chart(c,{type:'line',data:{
+    labels:['Q1 2022','Q2 2022','Q3 2022','Q4 2022','Q1 2023','Q2 2023','Q3 2023','Q4 2023','Q1 2024','Q2 2024','Q3 2024','Q4 2024','Q1 2025','Q2 2025','Q3 2025','Q4 2025','Q1 2026\nConflict Begins','Q2 2026\nApr-Jun','Q3 2026\nJul-Sep','Q4 2026\nOct-Dec'],
+    datasets:[
+      {label:'Actual US Unemployment Rate (%)',data:[3.8,3.6,3.5,3.5,3.4,3.4,3.6,3.7,3.7,4.0,4.2,4.2,4.3,4.3,4.4,4.4,4.4,null,null,null],borderColor:'#1565C0',borderWidth:2.5,tension:0.3,pointRadius:3,fill:false},
+      {label:'Baseline Projection — Short conflict',data:[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,4.4,4.5,4.6,4.6],borderColor:'#2E7D32',borderWidth:2,borderDash:[7,3],tension:0.3,pointRadius:3,fill:false},
+      {label:'Adverse Projection — Extended conflict',data:[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,4.4,4.6,4.7,4.8],borderColor:'#F57C00',borderWidth:2,borderDash:[7,3],tension:0.3,pointRadius:3,fill:false},
+      {label:'Severely Adverse — Prolonged conflict',data:[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,4.4,4.8,5.1,5.3],borderColor:'#C62828',borderWidth:2,borderDash:[4,4],tension:0.3,pointRadius:3,fill:false},
+    ]},
+    options:{responsive:true,plugins:{legend:{position:'top'},tooltip:{mode:'index'}},scales:{y:{title:{display:true,text:'Unemployment Rate (%)'},min:3.0,max:5.8},x:{grid:{display:false}}}}
+  });
+}
+
+function renderUSExportChart(){
+  const c=document.getElementById('usExportChart');if(!c)return;if(c._ci)c._ci.destroy();
+  c._ci=new Chart(c,{type:'bar',data:{
+    labels:['LNG Exports','Defense','Agriculture','Autos','Technology','Chemicals','Shipping'],
+    datasets:[
+      {label:'Q2 2026 (Apr-Jun)',data:[25,-12,-13,-14,-8,-16,-55],backgroundColor:d=>d.raw>=0?'rgba(46,125,50,0.8)':'rgba(198,40,40,0.8)',borderRadius:3},
+      {label:'Q3 2026 (Jul-Sep)',data:[18,-9,-10,-11,-10,-12,-38],backgroundColor:d=>d.raw>=0?'rgba(46,125,50,0.5)':'rgba(198,40,40,0.5)',borderRadius:3},
+      {label:'Q4 2026 (Oct-Dec)',data:[12,-7,-6,-7,-6,-7,-22],backgroundColor:d=>d.raw>=0?'rgba(46,125,50,0.3)':'rgba(198,40,40,0.3)',borderRadius:3},
+    ]},
+    options:{responsive:true,plugins:{legend:{position:'top'}},scales:{y:{title:{display:true,text:'% Change vs 2025 Average'}},x:{grid:{display:false}}}}
+  });
+  // fix color functions
+  c._ci.data.datasets.forEach(ds=>{
+    const colors=ds.data.map(v=>v>=0?(ds.label.includes('Q2')?'rgba(46,125,50,0.8)':ds.label.includes('Q3')?'rgba(46,125,50,0.5)':'rgba(46,125,50,0.3)'):(ds.label.includes('Q2')?'rgba(198,40,40,0.8)':ds.label.includes('Q3')?'rgba(198,40,40,0.5)':'rgba(198,40,40,0.3)'));
+    ds.backgroundColor=colors;
+  });
+  c._ci.update();
+}
+
+function renderShippingChart(){
+  const c=document.getElementById('shippingChart');if(!c)return;if(c._ci)c._ci.destroy();
+  c._ci=new Chart(c,{type:'bar',data:{
+    labels:['Strait of Hormuz','Red Sea / Suez','Strait of Malacca','Gibraltar','English Channel'],
+    datasets:[
+      {label:'February 27 — Pre-conflict (% normal)',data:[100,85,100,100,100],backgroundColor:'rgba(21,101,192,0.7)',borderRadius:3},
+      {label:'April 1 — Current (% normal)',data:[8,60,92,98,95],backgroundColor:'rgba(198,40,40,0.85)',borderRadius:3},
+    ]},
+    options:{indexAxis:'y',responsive:true,plugins:{legend:{position:'top'}},scales:{x:{title:{display:true,text:'Percentage of Normal Traffic (%)'},max:110},y:{grid:{display:false}}}}
+  });
+}
+
+function renderChokepointChart(){
+  const c=document.getElementById('chokepointChart');if(!c)return;if(c._ci)c._ci.destroy();
+  c._ci=new Chart(c,{type:'line',data:{
+    labels:['Feb 27\n(Pre-conflict)','Mar 1','Mar 5','Mar 10','Mar 15','Mar 20','Mar 25','Apr 1\n(Today)'],
+    datasets:[
+      {label:'Hormuz Strait Traffic (% of normal)',data:[100,60,25,10,8,7,8,8],borderColor:'#C62828',backgroundColor:'rgba(198,40,40,0.1)',borderWidth:2.5,tension:0.4,fill:true,pointRadius:5},
+      {label:'Red Sea / Suez Canal (% of normal)',data:[85,80,70,65,62,60,60,60],borderColor:'#F57C00',borderWidth:2,tension:0.4,fill:false,pointRadius:4},
+      {label:'Overall Global Freight Volume (% of normal)',data:[100,96,90,84,80,78,76,75],borderColor:'#1565C0',borderWidth:2,tension:0.4,fill:false,pointRadius:4},
+    ]},
+    options:{responsive:true,plugins:{legend:{position:'top'}},scales:{y:{title:{display:true,text:'Percentage of Normal Level (%)'},min:0,max:110},x:{grid:{display:false}}}}
+  });
+}
+
+function renderPies(){
+  const configs=[
+    {id:'pie_usa',data:[50,30,20],colors:['#C62828','#F57C00','#2E7D32'],labels:['Recession Risk','Slowdown','Moderate']},
+    {id:'pie_russia',data:[40,35,25],colors:['#2E7D32','#F57C00','#C62828'],labels:['Windfall','Stable','Risk']},
+    {id:'pie_china',data:[30,45,25],colors:['#F57C00','#C62828','#1565C0'],labels:['Growth','Slowdown','Risk']},
+    {id:'pie_japan',data:[55,30,15],colors:['#C62828','#F57C00','#2E7D32'],labels:['Critical','Severe','Moderate']},
+    {id:'pie_korea',data:[60,25,15],colors:['#C62828','#F57C00','#2E7D32'],labels:['Critical','Severe','Moderate']},
+    {id:'pie_india',data:[65,20,15],colors:['#C62828','#F57C00','#2E7D32'],labels:['Critical','Severe','Moderate']},
+    {id:'pie_gcc',data:[70,20,10],colors:['#C62828','#F57C00','#2E7D32'],labels:['Recession','Severe','Risk']},
+    {id:'pie_iran',data:[85,10,5],colors:['#C62828','#B71C1C','#F57C00'],labels:['Freefall','Sanctions','Structural']},
+    {id:'pie_brazil',data:[30,40,30],colors:['#F57C00','#C62828','#2E7D32'],labels:['Debt Risk','Mixed','Windfall']},
+  ];
+  configs.forEach(p=>{
+    const c=document.getElementById(p.id);if(!c)return;if(c._ci)c._ci.destroy();
+    c._ci=new Chart(c,{type:'pie',data:{labels:p.labels,datasets:[{data:p.data,backgroundColor:p.colors,borderWidth:0}]},options:{responsive:false,plugins:{legend:{display:false},tooltip:{enabled:true}}}});
+  });
+}
+
+function renderCountryGdpChart(){
+  const c=document.getElementById('countryGdpChart');if(!c)return;if(c._ci)c._ci.destroy();
+  c._ci=new Chart(c,{type:'line',data:{
+    labels:['Q1 2026\n(baseline)','Q2 2026\n(Apr-Jun)','Q3 2026\n(Jul-Sep)','Q4 2026\n(Oct-Dec)'],
+    datasets:[
+      {label:'USA (Adverse)',data:[2.4,1.2,1.5,1.9],borderColor:'#1565C0',borderWidth:2.5,tension:0.3,pointRadius:6},
+      {label:'EU Eurozone (Adverse)',data:[1.4,0.3,0.5,0.8],borderColor:'#F57C00',borderWidth:2.5,tension:0.3,pointRadius:6},
+      {label:'China (Adverse)',data:[4.4,3.6,3.4,3.8],borderColor:'#C62828',borderWidth:2.5,tension:0.3,pointRadius:6},
+      {label:'Japan (Adverse)',data:[1.0,0.1,-0.2,0.3],borderColor:'#6A1B9A',borderWidth:2,tension:0.3,pointRadius:5,borderDash:[4,3]},
+      {label:'South Korea (Adverse)',data:[2.0,0.8,0.5,1.2],borderColor:'#00695C',borderWidth:2,tension:0.3,pointRadius:5,borderDash:[4,3]},
+      {label:'India (Adverse)',data:[6.2,4.5,4.2,5.0],borderColor:'#F9A825',borderWidth:2,tension:0.3,pointRadius:5},
+    ]},
+    options:{responsive:true,plugins:{legend:{position:'top'},tooltip:{mode:'index'}},scales:{y:{title:{display:true,text:'Real GDP Growth Rate (%)'}},x:{grid:{display:false}}}}
+  });
+}
+
+// ── CYCLE DIAGRAM CLICK HANDLER ──
+const cycleData = {
+  1: {
+    step: 'STEP 1',
+    title: 'Oil Price Shock',
+    color: '#1565C0',
+    body: 'The Strait of Hormuz — the narrow passage through which 20 million barrels of oil pass every day — was effectively closed in early March 2026. Within 33 days, Brent crude surged from $72 to $106 per barrel, a 40% increase. This is the starting trigger for everything that follows. According to Goldman Sachs, every $10 rise in oil prices adds 0.2 percentage points to US headline inflation, meaning the current shock has already added roughly 0.7 percentage points to inflation before the rest of the economy has even adjusted.',
+    src: 'Source: Goldman Sachs ECS Research, March 2026; IEA Emergency Report, March 2026'
+  },
+  2: {
+    step: 'STEP 2',
+    title: 'Household Spending Falls',
+    color: '#F57C00',
+    body: 'When gasoline rises 35% in a single month, American families spend more on energy and have less money left over for everything else. The average US household is now paying roughly $1,200 more per year just on fuel. This directly cuts into spending on restaurants, clothing, vacations, and appliances — the discretionary categories that drive roughly two-thirds of US economic growth. NerdWallet\'s March 2026 survey found 65% of Americans expect a recession within 12 months, and consumer confidence is at a two-year low.',
+    src: 'Source: AAA Fuel Gauge Report, March 2026; NerdWallet Consumer Survey, March 2026; CNBC, March 25, 2026'
+  },
+  3: {
+    step: 'STEP 3',
+    title: 'Inflation Reignites',
+    color: '#D32F2F',
+    body: 'After months of progress, US inflation was down to 2.4% in January 2026. The oil shock reverses that entirely. Higher energy prices feed directly into the cost of almost every good and service — transport, manufacturing, food production, heating — pushing inflation back up sharply. The Federal Reserve now faces its most difficult dilemma in years: raise rates to fight inflation and risk deepening the recession, or cut rates to protect jobs and risk inflation spiralling further. There is no clean choice.',
+    src: 'Source: BLS Consumer Price Index, January 2026; Harvard Kennedy School FAS Symposium, March 27, 2026'
+  },
+  4: {
+    step: 'STEP 4',
+    title: 'Borrowing Costs Rise',
+    color: '#7B1FA2',
+    body: 'Markets are pricing in higher inflation for longer. The US 10-year Treasury yield has risen to 4.82%, pushing mortgage rates above 6.9% and raising the cost of borrowing for businesses and households alike. The Federal Reserve is on hold — it cannot easily cut rates while inflation is rising. This means every business that wants to borrow to expand, every family trying to buy a home, and every small company renewing a credit line is now paying more. The money multiplier — how much each dollar circulates through the economy — is contracting.',
+    src: 'Source: Federal Reserve H.15 Statistical Release; Goldman Sachs, March 2026; Oxford Economics'
+  },
+  5: {
+    step: 'STEP 5',
+    title: 'Business Investment Freezes',
+    color: '#2E7D32',
+    body: 'When interest rates are high, borrowing costs are elevated, and geopolitical uncertainty is at its peak, businesses stop expanding. Capital expenditure — spending on new equipment, factories, and technology — is being deferred or cancelled. Foreign Direct Investment into the US and global markets is projected to fall 15-35% in Q2 and Q3 2026. Goldman Sachs notes that even oil producers, despite high prices, are not meaningfully increasing drilling activity — because uncertainty about how long the conflict lasts makes long-term investment too risky.',
+    src: 'Source: Goldman Sachs Global Investment Monitor; Oxford Economics Iran Conflict Tracker, March 31, 2026'
+  },
+  6: {
+    step: 'STEP 6',
+    title: 'Jobs Are Lost',
+    color: '#C62828',
+    body: 'Goldman Sachs estimates the oil price shock is suppressing US payroll growth by roughly 10,000 jobs per month through the end of 2026. The hardest-hit sectors are restaurants, hotels, retail, and airlines — the industries that depend most on discretionary consumer spending and are most sensitive to fuel costs. The US economy had already created just 116,000 jobs in all of 2025 and lost 92,000 in February 2026. Goldman projects unemployment rising from 4.4% today to 4.6% by Q3 2026, with a severely adverse scenario reaching 4.7-5.1%.',
+    src: 'Source: Goldman Sachs "Iran Conflict US Jobs Impact," March 26, 2026; Bureau of Labor Statistics'
+  },
+  7: {
+    step: 'STEP 7',
+    title: 'Government Deficit Widens',
+    color: '#283593',
+    body: 'As the economy slows, tax revenues fall — people earn less, companies profit less, and capital gains disappear. At the same time, government spending rises: defense outlays are surging, the strategic petroleum reserve release has cost over $30 billion, and if unemployment climbs, unemployment insurance payments increase automatically. The US federal deficit, already projected at $1.8 trillion for FY2026, is now expected to reach $2.0-2.2 trillion. A larger deficit means more government borrowing, which keeps Treasury yields elevated and crowds out private investment.',
+    src: 'Source: Congressional Budget Office FY2026 Projections; Goldman Sachs; Oxford Economics'
+  },
+  8: {
+    step: 'STEP 8 — OUTCOME',
+    title: 'GDP Contracts — Recession Risk Reaches 50%',
+    color: '#D32F2F',
+    body: 'All the preceding steps combine to slow economic growth dramatically. Consumers are spending less, businesses are investing less, borrowing is more expensive, jobs are disappearing, and government finances are deteriorating. Moody\'s Analytics chief economist Mark Zandi has stated that if oil averages $125 per barrel through Q2 2026, recession becomes near-certain. Oxford Economics projects world GDP growth slowing to just 1.4% in the prolonged conflict scenario — the worst reading since the 2008-09 Global Financial Crisis and the 2020 pandemic. The dotted loop arrow at the bottom shows the reinforcing feedback: recession further reduces tax revenue and consumer spending, deepening the cycle.',
+    src: 'Source: Moody\'s Analytics / CNBC, March 25, 2026; Oxford Economics Prolonged War Scenario, March 31, 2026; Dallas Fed Model, March 20, 2026'
+  }
+};
+
+document.querySelectorAll('.cycle-node').forEach(node => {
+  node.style.cursor = 'pointer';
+  node.addEventListener('click', function() {
+    const step = this.getAttribute('data-step');
+    const d = cycleData[step];
+    if (!d) return;
+
+    // Highlight selected, reset others
+    document.querySelectorAll('.cycle-node').forEach(n => {
+      n.style.filter = '';
+      n.setAttribute('stroke-width', n === this ? '4' : '2.5');
+      if (n !== this) n.style.opacity = '0.65';
+    });
+    this.style.filter = 'url(#glow)';
+    this.style.opacity = '1';
+
+    // Populate explain panel
+    const panel = document.getElementById('cycleExplain');
+    const inner = document.getElementById('cycleExplainInner');
+    document.getElementById('cycleExplainStep').textContent = d.step;
+    document.getElementById('cycleExplainTitle').textContent = d.title;
+    document.getElementById('cycleExplainBody').textContent = d.body;
+    document.getElementById('cycleExplainSrc').textContent = d.src;
+    inner.style.borderLeftColor = d.color;
+    document.getElementById('cycleExplainStep').style.color = d.color;
+    panel.style.display = 'block';
+    panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  });
+});
+
+// reset on click outside
+document.getElementById('cycleSvg').addEventListener('click', function(e) {
+  if (!e.target.closest('.cycle-node')) {
+    document.querySelectorAll('.cycle-node').forEach(n => {
+      n.style.filter = '';
+      n.style.opacity = '1';
+      n.setAttribute('stroke-width', n.getAttribute('data-step') === '8' ? '3' : '2.5');
+    });
+    document.getElementById('cycleExplain').style.display = 'none';
+  }
+});
+
+function renderTabCharts(id){
+  if(id==='overview'){renderFuelChart();renderGdpChart();}
+  if(id==='usa'){renderUnempChart();}
+  if(id==='trade'){renderUSExportChart();renderShippingChart();renderChokepointChart();}
+  if(id==='countries'){renderPies();renderCountryGdpChart();}
+}
+
+// Initial render
+setTimeout(()=>{renderFuelChart();renderGdpChart();},300);
+</script>
+
+
+</body><grammarly-desktop-integration data-grammarly-shadow-root="true"></grammarly-desktop-integration></html>
