@@ -43,7 +43,7 @@ body{background:var(--bg);color:var(--text);font-family:'IBM Plex Sans',sans-ser
 }
 .news-ticker-inner .nitem{margin:0 36px;display:inline;}
 .news-ticker-inner .nitem .nsource{color:var(--gold);font-weight:600;margin-right:6px;font-size:11px;}
-.news-ticker-inner .nitem .nhot{color:#FF8A80;font-weight:700;margin-right:4px;font-size:10px;letter-spacing:1px;}
+.news-ticker-inner .nitem .nhot{color:#FF8A80;margin-right:4px;font-size:10px;letter-spacing:1px;}
 @keyframes newstick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 /* news ticker speed = same as markets ticker */
 
@@ -1723,7 +1723,7 @@ setTimeout(()=>{
   const todayLabel = document.getElementById('ctlTodayLabel');
   if(fill) fill.style.width = pct + '%';
   if(needle) { needle.style.left = pct + '%'; }
-  if(todayLabel) { todayLabel.style.left = pct + '%'; todayLabel.textContent = 'Day ' + days + ' — ' + dateShort; }
+  if(todayLabel) { todayLabel.style.left = pct + '%'; todayLabel.textContent = 'Day ' + days; }
 }, 400);
 
 // Tab switching
